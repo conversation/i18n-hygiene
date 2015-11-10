@@ -1,6 +1,26 @@
 namespace :i18n do
   namespace :hygiene do
 
+    desc "check usage of all EN keys"
+    task check_key_usage: :environment do
+      require 'parallel'
+
+      puts "Checking usage of EN keys..."
+      puts "(Please be patient while the codebase is searched for key usage)"
+
+      unused_keys = Parallel.map(I18n::Hygiene::Wrapper.new.keys_to_check) { |key|
+        key unless I18n::Hygiene::KeyUsageChecker.new(key).used_in_codebase?
+      }.compact
+
+      unused_keys.each do |key|
+        puts "#{key} is unused."
+      end
+
+      puts "Finished checking.\n\n"
+
+      exit(1) if unused_keys.any?
+    end
+
     desc "check for mismatching interpolation variables"
     task check_variables: :environment do
       puts "Checking for mismatching interpolation variables..."
