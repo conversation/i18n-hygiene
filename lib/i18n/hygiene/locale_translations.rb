@@ -9,6 +9,8 @@ module I18n
 
       # These are i18n keys provided by Rails. We cannot exclude them at the :helpers
       # scope level because we do have some TC i18n keys scoped within :helpers.
+
+      # TODO: make this configurable
       NON_TC_KEYS = [
         "helpers.select.prompt",
         "helpers.submit.create",
