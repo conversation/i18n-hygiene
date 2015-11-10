@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Exits bash immediately if any command fails
+set -e
+
+# Will output commands as they run
+set -x
+
+# print version and machine state info so we know if anything is wrong
+ruby -v
+hostname
+
+# clean any rubbish left behind by previous builds
+git clean -xdf log/ tmp/
+
+# prepare the repository state, load dependencies, etc
+bundle check || bundle --local || bundle
+
+# .. and now start the build
+bundle exec rspec spec
