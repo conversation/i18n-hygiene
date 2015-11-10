@@ -1,6 +1,9 @@
 namespace :i18n do
   namespace :hygiene do
 
+    desc 'run all the i18n hygiene checks'
+    task all: [:check_key_usage, :check_variables, :check_entities, :check_return_symbols, :check_script_tags]
+
     desc "check usage of all EN keys"
     task check_key_usage: :environment do
       require 'parallel'
