@@ -10,8 +10,6 @@ describe I18n::Hygiene::KeyUsageChecker do
 
     it 'finds usage of pluralized key'
 
-    it 'does not find unused key' do
-      expect(I18n::Hygiene::KeyUsageChecker.new("unused.key").used_in_codebase?).to be false
-    end
+    it 'does not find unused key'
   end
 end
