@@ -7,4 +7,6 @@ Gem::Specification.new do |s|
   s.authors = [""]
   s.files = `git ls-files -- lib/*`.split("\n")
   s.homepage ='https://github.com/conversation/i18n-hygiene'
+
+  s.add_dependency 'i18n', ['~> 0.6', '>= 0.6.9']
 end
