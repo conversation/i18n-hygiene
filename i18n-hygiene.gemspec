@@ -9,4 +9,5 @@ Gem::Specification.new do |s|
   s.homepage ='https://github.com/conversation/i18n-hygiene'
 
   s.add_dependency 'i18n', ['~> 0.6', '>= 0.6.9']
+  s.add_development_dependency 'rspec', '~> 3.0'
 end
