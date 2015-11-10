@@ -1,6 +1,24 @@
 namespace :i18n do
   namespace :hygiene do
 
+    desc "check for mismatching interpolation variables"
+    task check_variables: :environment do
+      puts "Checking for mismatching interpolation variables..."
+
+      wrapper = I18n::Hygiene::Wrapper.new
+
+      mismatched_variables = wrapper.keys_to_check.select do |key|
+        checker = I18n::Hygiene::VariableChecker.new(key, wrapper)
+        checker.mismatch_details if checker.mismatched_variables_found?
+      end
+
+      mismatched_variables.each { |details| puts details }
+
+      puts "Finished checking.\n\n"
+
+      exit(1) if mismatched_variables.any?
+    end
+
     desc "check for i18n phrases that contain entities"
     task check_entities: :environment do
       puts "Checking for phrases that contain entities but probably shouldn't..."
