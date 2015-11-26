@@ -11,7 +11,7 @@ module I18n
       # scope level because we do have some TC i18n keys scoped within :helpers.
 
       # TODO: make this configurable
-      NON_TC_KEYS = [
+      KEYS_TO_SKIP = [
         "helpers.select.prompt",
         "helpers.submit.create",
         "helpers.submit.submit",
@@ -24,7 +24,7 @@ module I18n
 
       def keys_to_check
         fully_qualified_keys(translations_to_check).reject { |key|
-          NON_TC_KEYS.include?(key) || EXAMPLE_KEY == key
+          KEYS_TO_SKIP.include?(key) || EXAMPLE_KEY == key
         }.sort
       end
 
