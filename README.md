@@ -18,3 +18,9 @@ You'll now have access to some new rake tasks:
 | `i18n:hygiene:check_entities` | Reports any translations that have unexpected HTML entities |
 | `i18n:hygiene:check_return_symbols` | Reports any translations that have a unicode return character in them |
 | `i18n:hygiene:check_script_tags` | Reports any translations that have script tags in them |
+
+## TO DO
+
+* Add ability to white-list dynamically used keys e.g. `I18n.t(code, scope: "language.label")`.
+* Enable keys that we want skipped to be configurable.
+* Add ability to configure folders to scan for key usage.
