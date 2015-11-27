@@ -4,9 +4,11 @@ Provides rake tasks to help maintain your translations.
 
 ## Usage
 
-Include the gem in your gemfile.
+Include the gem in your gemfile and bundle:
 
-More detailed instructions will be available when gem is published.
+`gem 'i18n-hygiene'`
+
+If you're using Rails, that's all there is to it. Instructions on how to use this gem without rails are further down.
 
 You'll now have access to some new rake tasks:
 
@@ -18,6 +20,20 @@ You'll now have access to some new rake tasks:
 | `i18n:hygiene:check_entities` | Reports any translations that have unexpected HTML entities |
 | `i18n:hygiene:check_return_symbols` | Reports any translations that have a unicode return character in them |
 | `i18n:hygiene:check_script_tags` | Reports any translations that have script tags in them |
+
+#### Without Rails
+
+Using this gem without Rails is intended to be possible, but it isn't very resilient to bare configurations yet. We hope to improve that.
+
+You can still give it a try, you'll need to include this in your projects Rakefile:
+
+```
+require 'i18n/hygiene'
+spec = Gem::Specification.find_by_name 'i18n-hygiene'
+load "#{spec.gem_dir}/lib/tasks/i18n_hygiene.rake"
+```
+
+This should give you access to the above rake tasks.
 
 ## TO DO
 
