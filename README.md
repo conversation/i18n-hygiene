@@ -40,3 +40,9 @@ This should give you access to the above rake tasks.
 * Add ability to white-list dynamically used keys e.g. `I18n.t(code, scope: "language.label")`.
 * Enable keys that we want skipped to be configurable.
 * Add ability to configure folders to scan for key usage.
+* Detect duplicate keys like this, it's never what we expect and the results are confusing:
+
+    foo:
+      bar: 1
+    foo:
+      bar: 2
