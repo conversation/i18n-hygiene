@@ -5,7 +5,7 @@ module I18n
     # in any other locale must have a matching variable name.
     class VariableChecker
 
-      NON_ENGLISH_LOCALES_TO_CHECK = [ :fr_fr ]
+      NON_ENGLISH_LOCALES_TO_CHECK = [ :fr ]
 
       def initialize(key, i18n_wrapper)
         @key = key
