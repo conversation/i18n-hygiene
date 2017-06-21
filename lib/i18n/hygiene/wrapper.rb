@@ -21,7 +21,7 @@ module I18n
 
       def value(locale, key)
         I18n.with_locale(locale) do
-          I18n.t(key)
+          I18n.t(key, resolve: false)
         end
       end
 

@@ -19,7 +19,7 @@ module I18n
       end
 
       def used_in_codebase?
-        fully_qualified_key_used?
+        fully_qualified_key_used? || i18n_config_key?
       end
 
       def fully_qualified_key_used?(given_key = key)
@@ -38,6 +38,10 @@ module I18n
         else
           return "ack --type-add=js=.coffee"
         end
+      end
+
+      def i18n_config_key?
+        key.starts_with?("i18n.")
       end
 
       def pluralized_key_used?(key)
