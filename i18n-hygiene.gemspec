@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'parallel', '~> 1.3'
   s.add_dependency 'rake', '~> 11.0.0'
   s.add_development_dependency 'rspec', '~> 3.0'
+  s.add_development_dependency 'pry-nav'
 end
