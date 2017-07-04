@@ -31,6 +31,7 @@ module I18n
               details_array << mismatch_details_for_locale(locale) unless variables_match?(locale)
             end
           end
+          details_array.each { |details| puts details }.join("\n")
           return details_array.join("\n")
         else
           return "#{@key}: no missing interpolation variables found."
