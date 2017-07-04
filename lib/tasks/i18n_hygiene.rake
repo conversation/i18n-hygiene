@@ -26,6 +26,13 @@ namespace :i18n do
 
     desc "check for mismatching interpolation variables"
     task check_variables: :environment do
+      puts "i18n:hygiene:check_variables is deprecated"
+      print "\t", caller.first(5).map(&:strip).join("\n\t")
+
+      puts "==="
+      puts "New usage is exposed via I18n::Hygiene::Tasks::CheckVariables"
+      puts "==="
+
       puts "Checking for mismatching interpolation variables..."
 
       wrapper = I18n::Hygiene::Wrapper.new
