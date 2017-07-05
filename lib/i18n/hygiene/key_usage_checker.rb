@@ -39,7 +39,7 @@ module I18n
       end
 
       def i18n_config_key?(key)
-        key.starts_with?("i18n.")
+        key.start_with?("i18n.")
       end
 
       def pluralized_key_used?(key)
