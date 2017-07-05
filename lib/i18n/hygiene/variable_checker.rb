@@ -4,16 +4,14 @@ module I18n
     # as defined in :en contains an interpolation variable, the value for that key as defined
     # in any other locale must have a matching variable name.
     class VariableChecker
-
-      NON_ENGLISH_LOCALES_TO_CHECK = [ :fr ]
-
-      def initialize(key, i18n_wrapper)
+      def initialize(key, i18n_wrapper, locales = [])
         @key = key
         @i18n_wrapper = i18n_wrapper
+        @locales = locales
       end
 
       def mismatched_variables_found?
-        NON_ENGLISH_LOCALES_TO_CHECK.each do |locale|
+        @locales.each do |locale|
           if key_defined?(locale)
             return true unless variables_match?(locale)
           end
@@ -24,11 +22,12 @@ module I18n
       def mismatch_details
         if mismatched_variables_found?
           details_array = []
-          NON_ENGLISH_LOCALES_TO_CHECK.each do |locale|
+          @locales.each do |locale|
             if key_defined?(locale)
               details_array << mismatch_details_for_locale(locale) unless variables_match?(locale)
             end
           end
+          details_array.each { |details| puts details }.join("\n")
           return details_array.join("\n")
         else
           return "#{@key}: no missing interpolation variables found."
