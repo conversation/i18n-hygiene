@@ -22,6 +22,8 @@ module I18n
         fully_qualified_key_used? || i18n_config_key?
       end
 
+      private
+
       def fully_qualified_key_used?(given_key = key)
         if pluralized_key_used?(given_key)
           fully_qualified_key_used?(without_last_part)
@@ -29,8 +31,6 @@ module I18n
           %x<#{ag_or_ack} #{given_key} app lib | wc -l>.strip.to_i > 0
         end
       end
-
-      private
 
       def ag_or_ack
         if %x<which ag | wc -l>.strip.to_i == 1
