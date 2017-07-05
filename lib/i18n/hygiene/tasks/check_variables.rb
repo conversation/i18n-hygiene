@@ -18,7 +18,7 @@ module I18n
             desc %(Check i18n hygiene)
           end
 
-          task(task_name) do
+          task(task_name => dependencies) do
             puts "Checking for mismatching interpolation variables..."
 
             wrapper = I18n::Hygiene::Wrapper.new
@@ -34,6 +34,12 @@ module I18n
 
             fail if mismatched_variables.any?
           end
+        end
+
+        private
+
+        def dependencies
+          [:environment] if defined?(Rails)
         end
       end
     end
