@@ -1,6 +1,7 @@
 require 'i18n/hygiene/wrapper'
 require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/variable_checker'
+require 'i18n/hygiene/result'
 
 module I18n
   module Hygiene
@@ -20,7 +21,11 @@ module I18n
 
           puts "Finished checking.\n\n"
 
-          mismatched_variables.any?
+          if mismatched_variables.any?
+            Result.new(:failure)
+          else
+            Result.new(:pass)
+          end
         end
       end
     end

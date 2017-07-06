@@ -22,8 +22,8 @@ module I18n
 
         task(task_name => dependencies) do
           checker = I18n::Hygiene::Checks::MissingInterpolationVariableCheck.new(config)
-          failed = checker.run
-          fail if failed
+          result = checker.run
+          fail unless result.passed?
         end
       end
 
