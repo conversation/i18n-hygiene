@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/tasklib'
 require 'i18n/hygiene/config'
 require 'i18n/hygiene/reporter'
+require 'i18n/hygiene/checks/missing_interpolation_variable_check'
 
 module I18n
   module Hygiene
@@ -19,8 +20,10 @@ module I18n
           desc %(Check i18n hygiene)
         end
 
-        task() do
-          fail
+        task(task_name => dependencies) do
+          checker = I18n::Hygiene::Checks::MissingInterpolationVariableCheck.new(config)
+          failed = checker.run
+          fail if failed
         end
       end
 
