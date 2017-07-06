@@ -17,7 +17,7 @@ module I18n
       end
 
       def used?(key)
-        fully_qualified_key_used?(key) || i18n_config_key?(key)
+        i18n_config_key?(key) || fully_qualified_key_used?(key)
       end
 
       private
