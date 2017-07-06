@@ -26,7 +26,7 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          %x<#{ag_or_ack} #{key} app lib | wc -l>.strip.to_i > 0
+          %x<#{ag_or_ack} #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
         end
       end
 
