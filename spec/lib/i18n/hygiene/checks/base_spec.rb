@@ -1,7 +1,15 @@
 require 'i18n/hygiene/checks/base'
+require 'i18n/hygiene/config'
 
 RSpec.describe I18n::Hygiene::Checks::Base do
-  let(:instance) { I18n::Hygiene::Checks::Base.new(double) }
+  let(:config) { I18n::Hygiene::Config.new }
+  let(:instance) { I18n::Hygiene::Checks::Base.new(config) }
+
+  context "not given a Config" do
+    it "raises an exception" do
+      expect{I18n::Hygiene::Checks::Base.new(123)}.to raise_exception
+    end
+  end
 
   describe "#run" do
     it "raises an exception" do
