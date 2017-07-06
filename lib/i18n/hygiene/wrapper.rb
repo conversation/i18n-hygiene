@@ -1,3 +1,6 @@
+require 'i18n'
+require 'i18n/hygiene/locale_translations'
+
 module I18n
   module Hygiene
     # Utility class for interacting with i18n definitions. This is not intended to be used
