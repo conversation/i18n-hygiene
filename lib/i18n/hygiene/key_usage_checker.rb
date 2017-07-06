@@ -12,25 +12,23 @@ module I18n
     # which should also be configurable.
     class KeyUsageChecker
 
-      attr_reader :key
-
-      def initialize(key)
-        @key = key
+      def initialize(directories:)
+        @directories = directories
       end
 
-      def used_in_codebase?
-        fully_qualified_key_used? || i18n_config_key?
-      end
-
-      def fully_qualified_key_used?(given_key = key)
-        if pluralized_key_used?(given_key)
-          fully_qualified_key_used?(without_last_part)
-        else
-          %x<#{ag_or_ack} #{given_key} app lib | wc -l>.strip.to_i > 0
-        end
+      def used?(key)
+        i18n_config_key?(key) || fully_qualified_key_used?(key)
       end
 
       private
+
+      def fully_qualified_key_used?(key)
+        if pluralized_key_used?(key)
+          fully_qualified_key_used?(without_last_part(key))
+        else
+          %x<#{ag_or_ack} #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
+        end
+      end
 
       def ag_or_ack
         if %x<which ag | wc -l>.strip.to_i == 1
@@ -40,15 +38,15 @@ module I18n
         end
       end
 
-      def i18n_config_key?
-        key.starts_with?("i18n.")
+      def i18n_config_key?(key)
+        key.start_with?("i18n.")
       end
 
       def pluralized_key_used?(key)
         [ "zero", "one", "other" ].include?(key.split(".").last)
       end
 
-      def without_last_part
+      def without_last_part(key)
         key.split(".")[0..-2].join(".")
       end
 
