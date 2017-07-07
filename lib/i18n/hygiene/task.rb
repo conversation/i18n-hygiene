@@ -31,6 +31,8 @@ module I18n
             end
           end
 
+          reporter.report
+
           fail unless reporter.passed?
         end
       end

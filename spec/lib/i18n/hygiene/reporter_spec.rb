@@ -36,4 +36,30 @@ RSpec.describe I18n::Hygiene::Reporter do
       end
     end
   end
+
+  describe "#report" do
+    context "passed" do
+      before do
+        reporter.concat(passed_result)
+      end
+
+      it "prints 'i18n hygiene checks passed.'" do
+        expect(reporter).to receive(:puts).with("i18n hygiene checks passed.")
+
+        reporter.report
+      end
+    end
+
+    context "failed" do
+      before do
+        reporter.concat(failed_result)
+      end
+
+      it "prints 'i18n hygiene checks failed.'" do
+        expect(reporter).to receive(:puts).with("i18n hygiene checks failed.")
+
+        reporter.report
+      end
+    end
+  end
 end
