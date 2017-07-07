@@ -22,9 +22,9 @@ module I18n
           puts "Finished checking.\n\n"
 
           if mismatched_variables.any?
-            Result.new(:failure)
+            yield Result.new(:failure)
           else
-            Result.new(:pass)
+            yield Result.new(:pass)
           end
         end
       end

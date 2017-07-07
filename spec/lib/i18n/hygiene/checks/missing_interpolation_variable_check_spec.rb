@@ -16,7 +16,9 @@ RSpec.describe I18n::Hygiene::Checks::MissingInterpolationVariableCheck do
       expect(I18n::Hygiene::VariableChecker).to receive(:new)
         .with(String, wrapper_double, [:en, :es, :fr]).and_return variable_checker_double
 
-      instance.run
+      instance.run do |result|
+        expect(result.passed?).to eq true
+      end
     end
   end
 end
