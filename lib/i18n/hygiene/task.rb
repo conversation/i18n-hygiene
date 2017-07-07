@@ -6,11 +6,11 @@ require 'i18n/hygiene/checks/missing_interpolation_variable_check'
 
 module I18n
   module Hygiene
-    CHECKS = [
-      I18n::Hygiene::Checks::MissingInterpolationVariableCheck
-    ]
-
     class Task < ::Rake::TaskLib
+      CHECKS = [
+        I18n::Hygiene::Checks::MissingInterpolationVariableCheck
+      ]
+
       def initialize(task_name = :hygiene)
         config = Config.new
 
