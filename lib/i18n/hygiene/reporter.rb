@@ -1,3 +1,5 @@
+require 'rainbow'
+
 module I18n
   module Hygiene
     class Reporter
@@ -15,9 +17,9 @@ module I18n
 
       def report
         if passed?
-          puts "i18n hygiene checks passed."
+          puts Rainbow("i18n hygiene checks passed.").green
         else
-          puts "i18n hygiene checks failed."
+          puts Rainbow("i18n hygiene checks failed.").red
         end
       end
     end

@@ -44,7 +44,7 @@ RSpec.describe I18n::Hygiene::Reporter do
       end
 
       it "prints 'i18n hygiene checks passed.'" do
-        expect(reporter).to receive(:puts).with("i18n hygiene checks passed.")
+        expect(reporter).to receive(:puts).with(/i18n hygiene checks passed./)
 
         reporter.report
       end
@@ -56,7 +56,7 @@ RSpec.describe I18n::Hygiene::Reporter do
       end
 
       it "prints 'i18n hygiene checks failed.'" do
-        expect(reporter).to receive(:puts).with("i18n hygiene checks failed.")
+        expect(reporter).to receive(:puts).with(/i18n hygiene checks failed./)
 
         reporter.report
       end
