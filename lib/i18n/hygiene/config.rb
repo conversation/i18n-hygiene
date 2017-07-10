@@ -3,6 +3,7 @@ module I18n
     class Config
       attr_writer :directories
       attr_writer :locales
+      attr_writer :whitelist
 
       def directories
         @directories ||= []
@@ -10,6 +11,10 @@ module I18n
 
       def locales
         @locales ||= []
+      end
+
+      def whitelist
+        @whitelist ||= []
       end
     end
   end
