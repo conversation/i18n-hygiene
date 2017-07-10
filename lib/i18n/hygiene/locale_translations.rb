@@ -10,9 +10,9 @@ module I18n
       # These are i18n keys provided by Rails. We cannot exclude them at the :helpers
       # scope level because we do have some TC i18n keys scoped within :helpers.
 
-      def initialize(translations, keys_to_skip: [])
+      def initialize(translations, keys_to_skip:)
         @translations = translations
-        @keys_to_skip = keys_to_skip
+        @keys_to_skip = keys_to_skip || []
       end
 
       def keys_to_check
