@@ -1,0 +1,5 @@
+fr_invalid:
+  translation:
+    plural:
+      one: "bar"
+    interpolation: "dont need no interpolation!"
