@@ -2,7 +2,7 @@ require 'i18n'
 require 'i18n/hygiene'
 
 describe I18n::Hygiene::LocaleTranslations do
-  let(:translations) { I18n::Hygiene::LocaleTranslations.new(all_translations, keys_to_skip: keys_to_skip) }
+  let(:translations) { I18n::Hygiene::LocaleTranslations.new(translations: all_translations, keys_to_skip: keys_to_skip) }
   let(:all_translations) do
     {
       activerecord: "abc",

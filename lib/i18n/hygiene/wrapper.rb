@@ -13,7 +13,7 @@ module I18n
       end
 
       def keys_to_check(locale = :en)
-        I18n::Hygiene::LocaleTranslations.new(translations[locale], keys_to_skip: keys_to_skip).keys_to_check
+        I18n::Hygiene::LocaleTranslations.new(translations: translations[locale], keys_to_skip: keys_to_skip).keys_to_check
       end
 
       def locales
