@@ -2,9 +2,20 @@ require 'i18n/hygiene/key_usage_checker'
 
 describe I18n::Hygiene::KeyUsageChecker do
 
-  let(:checker_instance) { I18n::Hygiene::KeyUsageChecker.new(directories: ["you", "only", "yolo", "once"]) }
+  let(:checker_instance) do
+    I18n::Hygiene::KeyUsageChecker.new(
+      directories: ["you", "only", "yolo", "once"],
+      whitelist: ["whitelisted.key"]
+    )
+  end
 
   describe '#used?' do
+    context "key is whitelisted" do
+      it "returns true" do
+        expect(checker_instance.used?("whitelisted.key")).to eql true
+      end
+    end
+
     context "key is prefixed with i18n" do
       it "returns true" do
         expect(checker_instance.used?("i18n.my.key")).to eql true
