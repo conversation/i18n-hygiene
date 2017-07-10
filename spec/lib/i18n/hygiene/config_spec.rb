@@ -9,4 +9,11 @@ RSpec.describe I18n::Hygiene::Config do
       expect(config.locales).to eq [:en]
     end
   end
+
+  describe "#directories=" do
+    it "sets directories" do
+      config.directories = ["app", "lib"]
+      expect(config.directories).to eq ["app", "lib"]
+    end
+  end
 end
