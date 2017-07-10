@@ -7,7 +7,7 @@ RSpec.describe I18n::Hygiene::Checks::Base do
 
   context "not given a Config" do
     it "raises an exception" do
-      expect{I18n::Hygiene::Checks::Base.new(123)}.to raise_exception
+      expect{I18n::Hygiene::Checks::Base.new(123)}.to raise_exception "Must pass an instance of Config"
     end
   end
 
