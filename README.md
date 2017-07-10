@@ -8,41 +8,56 @@ Include the gem in your gemfile and bundle:
 
 `gem 'i18n-hygiene'`
 
-If you're using Rails, that's all there is to it. Instructions on how to use this gem without rails are further down.
+## Integrating with rake
 
-You'll now have access to some new rake tasks:
+Then, create a rake task with the desired configuration. For example, this will create a rake task called `i18n:hygiene`:
 
-| Task | Description |
-|---|---|
-| `i18n:hygiene:all` | Runs all of the checks |
-| `i18n:hygiene:check_key_usage` | Reports any translations that are unused |
-| `i18n:hygiene:check_variables` | Reports any translations that have an incorrectly named or missing interpolated variables |
-| `i18n:hygiene:check_entities` | Reports any translations that have unexpected HTML entities |
-| `i18n:hygiene:check_return_symbols` | Reports any translations that have a unicode return character in them |
-| `i18n:hygiene:check_script_tags` | Reports any translations that have script tags in them |
+```ruby
+namespace :i18n do
+  I18n::Hygiene::RakeTask.new do |config|
+    config.directories = ["app", "lib"]
+    config.locales = [:es, :fr, :id]
+    config.whitelist = [
+      "my.dynamically.used.key",
+      "another.dynamically.used.key"
+    ]
+  end
+end
+
+```
+
+You could also create separate rake tasks with different configurations, this may be useful if you are in the middle of rolling out a new locale:
+```ruby
+namespace :i18n do
+  I18n::Hygiene::RakeTask.new(:hygiene_live) do |config|
+    config.locales = [:fr]
+  end
+
+  I18n::Hygiene::RakeTask.new(:hygiene_wip) do |config|
+    config.locales = [:es]
+  end
+end
+```
 
 #### Without Rails
 
-Using this gem without Rails is intended to be possible, but it isn't very resilient to bare configurations yet. We hope to improve that.
+Using this gem without is possible, but you'll need to load the translations manually first.
 
-You can still give it a try, you'll need to include this in your projects Rakefile:
+```ruby
+namespace :i18n do
+  require 'i18n'
+  require 'i18n/hygiene'
 
+  I18n.load_path = Dir["locales/*.yml"]
+  I18n.backend.load_translations
+
+  I18n::Hygiene::RakeTask.new(:hygiene_live) do |config|
+    config.directories = ["src"]
+    config.locales = [:fr]
+  end
+end
 ```
-require 'i18n/hygiene'
-spec = Gem::Specification.find_by_name 'i18n-hygiene'
-load "#{spec.gem_dir}/lib/tasks/i18n_hygiene.rake"
-```
 
-This should give you access to the above rake tasks.
+## License
 
-## TO DO
-
-* Add ability to white-list dynamically used keys e.g. `I18n.t(code, scope: "language.label")`.
-* Enable keys that we want skipped to be configurable.
-* Add ability to configure folders to scan for key usage.
-* Detect duplicate keys like this, it's never what we expect and the results are confusing:
-
-    foo:
-      bar: 1
-    foo:
-      bar: 2
+MIT
