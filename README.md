@@ -1,4 +1,4 @@
-# i18n-hygiene ![Build status](https://badge.buildkite.com/a5ef737a5ec11d5a6fd1df872d1639c8c3af05a782c4825b01.svg?branch=master)
+# i18n-hygiene [![Build Status](https://travis-ci.org/conversation/i18n-hygiene.svg?branch=master)](https://travis-ci.org/conversation/i18n-hygiene)
 
 Provides rake tasks to help maintain your translations.
 
