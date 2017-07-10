@@ -2,13 +2,13 @@ require 'rake'
 require 'rake/tasklib'
 require 'i18n/hygiene/config'
 require 'i18n/hygiene/reporter'
-require 'i18n/hygiene/checks/missing_interpolation_variable_check'
+require 'i18n/hygiene/checks/missing_interpolation_variable'
 
 module I18n
   module Hygiene
     class RakeTask < ::Rake::TaskLib
       CHECKS = [
-        I18n::Hygiene::Checks::MissingInterpolationVariableCheck
+        I18n::Hygiene::Checks::MissingInterpolationVariable
       ]
 
       def initialize(task_name = :hygiene)

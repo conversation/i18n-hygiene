@@ -1,9 +1,9 @@
 require 'i18n/hygiene/config'
-require 'i18n/hygiene/checks/missing_interpolation_variable_check'
+require 'i18n/hygiene/checks/missing_interpolation_variable'
 
-RSpec.describe I18n::Hygiene::Checks::MissingInterpolationVariableCheck do
+RSpec.describe I18n::Hygiene::Checks::MissingInterpolationVariable do
   let(:config) { I18n::Hygiene::Config.new.tap { |config| config.locales = [:en, :es, :fr] } }
-  let(:instance) { I18n::Hygiene::Checks::MissingInterpolationVariableCheck.new(config) }
+  let(:instance) { I18n::Hygiene::Checks::MissingInterpolationVariable.new(config) }
   let(:wrapper_double) { instance_double(I18n::Hygiene::Wrapper, keys_to_check: ["blah"]) }
   let(:variable_checker_double) { instance_double(I18n::Hygiene::VariableChecker, mismatched_variables_found?: false) }
 

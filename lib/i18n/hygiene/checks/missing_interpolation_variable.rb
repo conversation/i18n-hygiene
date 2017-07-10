@@ -6,7 +6,7 @@ require 'i18n/hygiene/result'
 module I18n
   module Hygiene
     module Checks
-      class MissingInterpolationVariableCheck < Base
+      class MissingInterpolationVariable < Base
         def run
           puts "Checking for mismatching interpolation variables..."
 
