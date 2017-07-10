@@ -12,15 +12,20 @@ module I18n
     # which should also be configurable.
     class KeyUsageChecker
 
-      def initialize(directories:)
+      def initialize(directories:, whitelist:)
         @directories = directories
+        @whitelist = whitelist
       end
 
       def used?(key)
-        i18n_config_key?(key) || fully_qualified_key_used?(key)
+        whitelisted?(key) || i18n_config_key?(key) || fully_qualified_key_used?(key)
       end
 
       private
+
+      def whitelisted?(key)
+        @whitelist.include?(key)
+      end
 
       def fully_qualified_key_used?(key)
         if pluralized_key_used?(key)

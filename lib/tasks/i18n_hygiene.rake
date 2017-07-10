@@ -11,7 +11,7 @@ namespace :i18n do
       puts "Checking usage of EN keys..."
       puts "(Please be patient while the codebase is searched for key usage)"
 
-      key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: ["app", "lib"])
+      key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: ["app", "lib"], whitelist: [])
 
       unused_keys = Parallel.map(I18n::Hygiene::Wrapper.new.keys_to_check) { |key|
         key unless key_usage_checker.used?(key)
