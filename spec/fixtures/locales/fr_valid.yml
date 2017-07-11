@@ -1,0 +1,8 @@
+fr_valid:
+  translation:
+    dynamic: "foo"
+    plural:
+      one: "bar"
+      other: "bars"
+    full_key: "baz"
+    interpolation: "%{qux}"

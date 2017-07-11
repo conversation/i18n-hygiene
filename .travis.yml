@@ -1,6 +1,10 @@
 language: ruby
 rvm:
   - 2.4.1
+dist: trusty
+sudo: required
+before_install:
+  - sudo apt-get install silversearcher-ag
 notifications:
   slack:
     secure: hlY8BrMzhqWRd8urCScKtdOVJPMdV8I8e65KeYVEvUTX7rtbxRjOGc55QNa7b8EpBetsGWYHKfuHIzDtAS/BUKKeO21mr/N/j9O4/9XDVLBltAucnhDjDiunXeQMs2COBBn6+K6dlKf82HUs320fV+cyLYJT2ekz3y3jONDTfrP3WBNjoXbIR86uDSq2ktrMZ9MOxCtvSc7CAPFYtn+p5jnsTJGMp0T1extW8GSXM00rDEaPXVmV8O0H63SG6yO/z1ZmquPHZBzgZmbMrnuW82hWGMny1JrCId5YTsLfzERw+YuRxU7WN7k727n1XWcGU6M4cRM9EV+f6G/Ygom7+9feZYU8+CsAiI0BagmwPOi0bVLgzstvI9gNwdrE4T9G/2V+HeYWsJvXexKl9ewUubLrxqYseHJcyhszZ4MbP6DVhbm6jy50EDie5cThpFgEPri6NW3G+WxdnBWNinxF/gw4Q2y2+a6Pw5h9OXvqJ0VHYyE0udlgoMIAE/dR5qkz7BmjYx39EVhX7gsI+Tx1CHIbdfWj8NaXoQLDDQoJ8GnbR2NXwSI9SyVwZu7AMZfaIa88rQH+uKsgU5lTqhy4nh213b492AdbQNTuxk0tstskbZfrKNnB4uBRAS0fcj3T/+kk6mkb5AwUPwrJUIP7Twrk4fD5I9SxUe1gIuiGFlA=
