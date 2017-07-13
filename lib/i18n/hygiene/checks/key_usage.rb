@@ -9,7 +9,7 @@ module I18n
     module Checks
       class KeyUsage < Base
         def run
-          puts "Checking usage of EN keys..."
+          puts "Checking usage of #{config.primary_locale} keys..."
           puts "(Please be patient while the codebase is searched for key usage)"
 
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
