@@ -18,7 +18,7 @@ module I18n
       end
 
       def locales
-        translations.keys.select { |key| @locales.include?(key) }
+        @locales
       end
 
       def key_found?(locale, key)
