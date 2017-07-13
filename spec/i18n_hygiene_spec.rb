@@ -24,7 +24,7 @@ RSpec.describe "i18n-hygiene" do
         expect {
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
-          Checking usage of EN keys...
+          Checking usage of en_valid keys...
           (Please be patient while the codebase is searched for key usage)
           translation.dynamic is unused.
           Finished checking.

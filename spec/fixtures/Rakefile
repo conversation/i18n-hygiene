@@ -5,12 +5,18 @@ I18n.load_path = Dir["spec/fixtures/locales/*.yml"]
 I18n.backend.load_translations
 
 I18n::Hygiene::RakeTask.new(:valid) do |config|
+  I18n.default_locale = :en_valid
+
   config.directories = ["spec/fixtures/project/app", "spec/fixtures/project/lib"]
+  config.primary_locale = :en_valid
   config.locales = [:fr_valid]
   config.whitelist = "translation.dynamic"
 end
 
 I18n::Hygiene::RakeTask.new(:invalid) do |config|
+  I18n.default_locale = :en_valid
+
   config.directories = ["spec/fixtures/project/app", "spec/fixtures/project/lib"]
+  config.primary_locale = :en_valid
   config.locales = [:fr_invalid]
 end
