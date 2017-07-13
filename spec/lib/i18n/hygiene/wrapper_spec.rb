@@ -10,7 +10,7 @@ describe I18n::Hygiene::Wrapper do
 
   describe '#keys_to_check' do
     it 'includes expected key in those retrieved for default locale' do
-      expect(wrapper.keys_to_check).to include("abuse_report.button.submit")
+      expect(wrapper.keys_to_check(:en)).to include("abuse_report.button.submit")
     end
   end
 

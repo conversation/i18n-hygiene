@@ -4,9 +4,10 @@ module I18n
     # as defined in :en contains an interpolation variable, the value for that key as defined
     # in any other locale must have a matching variable name.
     class VariableChecker
-      def initialize(key, i18n_wrapper, locales = [])
+      def initialize(key, i18n_wrapper, primary_locale, locales = [])
         @key = key
         @i18n_wrapper = i18n_wrapper
+        @primary_locale = primary_locale
         @locales = locales
       end
 
@@ -41,7 +42,7 @@ module I18n
       end
 
       def missing_variables(locale)
-        variables(:en).reject { |v| variables(locale).include?(v) }.join(', ')
+        variables(@primary_locale).reject { |v| variables(locale).include?(v) }.join(', ')
       end
 
       def key_defined?(locale)
@@ -49,7 +50,7 @@ module I18n
       end
 
       def variables_match?(locale)
-        variables(locale) == variables(:en)
+        variables(locale) == variables(@primary_locale)
       end
 
       def variables(locale)
