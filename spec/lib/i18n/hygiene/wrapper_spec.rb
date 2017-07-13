@@ -2,7 +2,7 @@ require 'i18n'
 require 'i18n/hygiene'
 
 describe I18n::Hygiene::Wrapper do
-  let(:wrapper) { I18n::Hygiene::Wrapper.new }
+  let(:wrapper) { I18n::Hygiene::Wrapper.new(keys_to_skip: []) }
 
   before do
     ::I18n.backend.send(:store_translations, :en, abuse_report: { button: { submit: "x" }})

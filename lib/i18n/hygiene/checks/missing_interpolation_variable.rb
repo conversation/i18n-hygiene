@@ -10,7 +10,7 @@ module I18n
         def run
           puts "Checking for mismatching interpolation variables..."
 
-          wrapper = I18n::Hygiene::Wrapper.new
+          wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
 
           mismatched_variables = wrapper.keys_to_check.select do |key|
             checker = I18n::Hygiene::VariableChecker.new(key, wrapper, config.locales)

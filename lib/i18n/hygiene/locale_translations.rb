@@ -10,21 +10,14 @@ module I18n
       # These are i18n keys provided by Rails. We cannot exclude them at the :helpers
       # scope level because we do have some TC i18n keys scoped within :helpers.
 
-      # TODO: make this configurable
-      KEYS_TO_SKIP = [
-        "helpers.select.prompt",
-        "helpers.submit.create",
-        "helpers.submit.submit",
-        "helpers.submit.update"
-      ]
-
-      def initialize(translations)
+      def initialize(translations:, keys_to_skip:)
         @translations = translations
+        @keys_to_skip = keys_to_skip || []
       end
 
       def keys_to_check
         fully_qualified_keys(translations_to_check).reject { |key|
-          KEYS_TO_SKIP.include?(key) || EXAMPLE_KEY == key
+          keys_to_skip.include?(key) || EXAMPLE_KEY == key
         }.sort
       end
 
@@ -56,6 +49,10 @@ module I18n
 
       def scopes_from_faker
         [ :faker ]
+      end
+
+      def keys_to_skip
+        @keys_to_skip
       end
 
       def fully_qualified_keys(hash)
