@@ -34,6 +34,10 @@ RSpec.describe "i18n-hygiene" do
           translation.interpolation
           Finished checking.
 
+          Checking for phrases that contain entities but probably shouldn't...
+          - fr_invalid: translation.full_key
+          Finished checking.
+
           i18n hygiene checks failed.
         MESSAGE
       end
