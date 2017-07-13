@@ -2,12 +2,17 @@ module I18n
   module Hygiene
     class Config
       attr_writer :directories
+      attr_writer :primary_locale
       attr_writer :locales
       attr_writer :whitelist
       attr_writer :keys_to_skip
 
       def directories
         @directories ||= []
+      end
+
+      def primary_locale
+        @primary_locale ||= :en
       end
 
       def locales
@@ -17,7 +22,7 @@ module I18n
       def whitelist
         @whitelist ||= []
       end
-      
+
       def keys_to_skip
         @keys_to_skip ||= []
       end
