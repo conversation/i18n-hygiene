@@ -8,7 +8,8 @@ module I18n
     # queryable.
     class Wrapper
 
-      def initialize(keys_to_skip:)
+      def initialize(keys_to_skip: [], locales: ::I18n.available_locales)
+        @locales = locales
         @keys_to_skip = keys_to_skip
       end
 
@@ -17,7 +18,7 @@ module I18n
       end
 
       def locales
-        translations.keys
+        translations.keys.select { |key| @locales.include?(key) }
       end
 
       def key_found?(locale, key)

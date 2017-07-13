@@ -20,5 +20,19 @@ describe I18n::Hygiene::Wrapper do
         expect(wrapper.locales).to include(locale)
       end
     end
+
+    context 'provided locales' do
+      let(:wrapper) { I18n::Hygiene::Wrapper.new(locales: [:en, :fr]) }
+
+      before do
+        [:fr, :es].each do |locale|
+          ::I18n.backend.send(:store_translations, locale, abuse_report: { button: { submit: "x" }})
+        end
+      end
+
+      it "includes only locales filtered by provided" do
+        expect(wrapper.locales).to eq [:en, :fr]
+      end
+    end
   end
 end
