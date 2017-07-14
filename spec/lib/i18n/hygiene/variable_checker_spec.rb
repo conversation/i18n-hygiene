@@ -3,8 +3,8 @@ require 'i18n/hygiene'
 
 describe I18n::Hygiene::VariableChecker do
   let(:i18n_wrapper) { instance_double("TC::I18nWrapper") }
-  let(:checker) { I18n::Hygiene::VariableChecker.new("test_key", i18n_wrapper, [:fr]) }
-  let(:checker_markdown) { I18n::Hygiene::VariableChecker.new("test_key_markdown", i18n_wrapper, [:fr]) }
+  let(:checker) { I18n::Hygiene::VariableChecker.new("test_key", i18n_wrapper, :en, [:fr]) }
+  let(:checker_markdown) { I18n::Hygiene::VariableChecker.new("test_key_markdown", i18n_wrapper, :en, [:fr]) }
   let(:base_value) { "A sentence with a variable %{variable_key}"  }
   let(:base_js_value) { "A sentence with a variable __variable_key__"  }
   let(:matching_value) { "Translation with correct variable %{variable_key}"  }

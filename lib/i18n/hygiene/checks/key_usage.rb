@@ -9,7 +9,7 @@ module I18n
     module Checks
       class KeyUsage < Base
         def run
-          puts "Checking usage of EN keys..."
+          puts "Checking usage of #{config.primary_locale} keys..."
           puts "(Please be patient while the codebase is searched for key usage)"
 
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
@@ -17,7 +17,9 @@ module I18n
             whitelist: config.whitelist
           )
 
-          unused_keys = Parallel.map(I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip).keys_to_check) { |key|
+          wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
+
+          unused_keys = Parallel.map(wrapper.keys_to_check(config.primary_locale)) { |key|
             key unless key_usage_checker.used?(key)
           }.compact
 

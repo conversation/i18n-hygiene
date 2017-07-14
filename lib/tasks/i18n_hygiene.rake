@@ -40,7 +40,7 @@ namespace :i18n do
       wrapper = I18n::Hygiene::Wrapper.new
 
       mismatched_variables = wrapper.keys_to_check.select do |key|
-        checker = I18n::Hygiene::VariableChecker.new(key, wrapper, [:fr])
+        checker = I18n::Hygiene::VariableChecker.new(key, wrapper, :en, [:fr])
         checker.mismatch_details if checker.mismatched_variables_found?
       end
 
