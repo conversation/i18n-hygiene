@@ -2,6 +2,7 @@ require 'rake'
 require 'rake/tasklib'
 require 'i18n/hygiene/config'
 require 'i18n/hygiene/reporter'
+require 'i18n/hygiene/checks/html_entity'
 require 'i18n/hygiene/checks/key_usage'
 require 'i18n/hygiene/checks/missing_interpolation_variable'
 
@@ -10,7 +11,8 @@ module I18n
     class RakeTask < ::Rake::TaskLib
       CHECKS = [
         I18n::Hygiene::Checks::KeyUsage,
-        I18n::Hygiene::Checks::MissingInterpolationVariable
+        I18n::Hygiene::Checks::MissingInterpolationVariable,
+        I18n::Hygiene::Checks::HtmlEntity
       ]
 
       def initialize(task_name = :hygiene)

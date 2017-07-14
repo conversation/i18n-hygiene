@@ -5,7 +5,9 @@ describe I18n::Hygiene::Wrapper do
   let(:wrapper) { I18n::Hygiene::Wrapper.new(keys_to_skip: []) }
 
   before do
-    ::I18n.backend.send(:store_translations, :en, abuse_report: { button: { submit: "x" }})
+    [:en, :fr, :es].each do |locale|
+      ::I18n.backend.send(:store_translations, locale, abuse_report: { button: { submit: "x" }})
+    end
   end
 
   describe '#keys_to_check' do
@@ -15,9 +17,15 @@ describe I18n::Hygiene::Wrapper do
   end
 
   describe '#locales' do
-    it 'includes expected locales' do
-      [:en].each do |locale|
-        expect(wrapper.locales).to include(locale)
+    it 'includes all locales by default' do
+      expect(wrapper.locales).to eq [:en, :fr, :es]
+    end
+
+    context 'provided locales' do
+      let(:wrapper) { I18n::Hygiene::Wrapper.new(locales: [:en, :fr]) }
+
+      it "includes only locales provided" do
+        expect(wrapper.locales).to eq [:en, :fr]
       end
     end
   end

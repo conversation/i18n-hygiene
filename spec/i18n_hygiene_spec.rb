@@ -1,7 +1,7 @@
 RSpec.describe "i18n-hygiene" do
   describe "running the created rake task" do
     context "checking against a valid translation" do
-      let(:shell_cmd) { "rake -f spec/fixtures/Rakefile valid" }
+      let(:shell_cmd) { "rake -f spec/fixtures/valid.Rakefile" }
 
       before do
         system("#{shell_cmd} 2> /dev/null > /dev/null")
@@ -13,7 +13,7 @@ RSpec.describe "i18n-hygiene" do
     end
 
     context "checking against an invalid translation" do
-      let(:shell_cmd) { "rake -f spec/fixtures/Rakefile invalid" }
+      let(:shell_cmd) { "rake -f spec/fixtures/invalid.Rakefile" }
 
       it "returns nonzero" do
         system("#{shell_cmd} 2> /dev/null > /dev/null")
@@ -24,7 +24,7 @@ RSpec.describe "i18n-hygiene" do
         expect {
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
-          Checking usage of en_valid keys...
+          Checking usage of en_invalid keys...
           (Please be patient while the codebase is searched for key usage)
           translation.dynamic is unused.
           Finished checking.
@@ -32,6 +32,11 @@ RSpec.describe "i18n-hygiene" do
           Checking for mismatching interpolation variables...
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
           translation.interpolation
+          Finished checking.
+
+          Checking for phrases that contain entities but probably shouldn't...
+          - en_invalid: translation.dynamic
+          - fr_invalid: translation.full_key
           Finished checking.
 
           i18n hygiene checks failed.
