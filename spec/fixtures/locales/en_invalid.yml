@@ -1,0 +1,7 @@
+en_invalid:
+  translation:
+    dynamic: "foo"
+    plural:
+      one: "bar"
+      other: "bars"
+    interpolation: "%{qux}"
