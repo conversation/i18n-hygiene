@@ -5,6 +5,7 @@ require 'i18n/hygiene/reporter'
 require 'i18n/hygiene/checks/html_entity'
 require 'i18n/hygiene/checks/key_usage'
 require 'i18n/hygiene/checks/missing_interpolation_variable'
+require 'i18n/hygiene/checks/script_tag'
 
 module I18n
   module Hygiene
@@ -12,7 +13,8 @@ module I18n
       CHECKS = [
         I18n::Hygiene::Checks::KeyUsage,
         I18n::Hygiene::Checks::MissingInterpolationVariable,
-        I18n::Hygiene::Checks::HtmlEntity
+        I18n::Hygiene::Checks::HtmlEntity,
+        I18n::Hygiene::Checks::ScriptTag,
       ]
 
       def initialize(task_name = :hygiene)

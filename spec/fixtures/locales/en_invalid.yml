@@ -2,6 +2,6 @@ en_invalid:
   translation:
     dynamic: "foo &quot;"
     plural:
-      one: "bar"
+      one: "<script>bar</script>"
       other: "bars"
     interpolation: "%{qux}"
