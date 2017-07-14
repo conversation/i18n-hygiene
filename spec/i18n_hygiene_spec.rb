@@ -35,6 +35,7 @@ RSpec.describe "i18n-hygiene" do
           Finished checking.
 
           Checking for phrases that contain entities but probably shouldn't...
+          - en_invalid: translation.dynamic
           - fr_invalid: translation.full_key
           Finished checking.
 

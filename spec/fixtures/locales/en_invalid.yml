@@ -1,6 +1,6 @@
 en_invalid:
   translation:
-    dynamic: "foo"
+    dynamic: "foo &quot;"
     plural:
       one: "bar"
       other: "bars"

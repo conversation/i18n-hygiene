@@ -10,7 +10,7 @@ module I18n
         def run
           puts "Checking for phrases that contain entities but probably shouldn't..."
 
-          wrapper = I18n::Hygiene::Wrapper.new(locales: config.locales)
+          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
 
           keys_with_entities = I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
 
@@ -25,6 +25,12 @@ module I18n
           else
             yield Result.new(:pass)
           end
+        end
+
+        private
+
+        def all_locales
+          [config.primary_locale] + config.locales
         end
       end
     end
