@@ -39,7 +39,7 @@ RSpec.describe "i18n-hygiene" do
           - fr_invalid: translation.full_key
           Finished checking.
 
-          Checking for phrases that contain entities but probably shouldn't...
+          Checking that no values contain script tags ...
            - en_invalid: translation.plural.one
           Finished checking.
 

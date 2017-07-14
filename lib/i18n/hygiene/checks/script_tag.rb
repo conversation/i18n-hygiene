@@ -8,7 +8,7 @@ module I18n
     module Checks
       class ScriptTag < Base
         def run
-          puts "Checking for phrases that contain entities but probably shouldn't..."
+          puts "Checking that no values contain script tags ..."
 
           wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
 
