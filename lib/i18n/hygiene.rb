@@ -1,4 +1,3 @@
-require 'i18n/hygiene/railtie' if defined?(Rails)
 require 'i18n/hygiene/key_usage_checker'
 require 'i18n/hygiene/keys_with_entities'
 require 'i18n/hygiene/keys_with_matched_value'
