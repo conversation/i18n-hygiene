@@ -11,38 +11,18 @@ module I18n
         @locales = locales
       end
 
-      def mismatched_variables_found?
+      def mismatched_variables
         @locales.each do |locale|
           if key_defined?(locale)
-            return true unless variables_match?(locale)
+            yield(locale, @key, missing_variables(locale)) unless variables_match?(locale)
           end
-        end
-        false
-      end
-
-      def mismatch_details
-        if mismatched_variables_found?
-          details_array = []
-          @locales.each do |locale|
-            if key_defined?(locale)
-              details_array << mismatch_details_for_locale(locale) unless variables_match?(locale)
-            end
-          end
-          details_array.each { |details| puts details }.join("\n")
-          return details_array.join("\n")
-        else
-          return "#{@key}: no missing interpolation variables found."
         end
       end
 
       private
 
-      def mismatch_details_for_locale(locale)
-        "#{@key} for locale #{locale} is missing interpolation variable(s): #{missing_variables(locale)}"
-      end
-
       def missing_variables(locale)
-        variables(@primary_locale).reject { |v| variables(locale).include?(v) }.join(', ')
+        variables(@primary_locale).reject { |v| variables(locale).include?(v) }
       end
 
       def key_defined?(locale)

@@ -5,11 +5,12 @@ RSpec.describe I18n::Hygiene::Checks::MissingInterpolationVariable do
   let(:config) { I18n::Hygiene::Config.new.tap { |config| config.locales = [:es, :fr] } }
   let(:instance) { I18n::Hygiene::Checks::MissingInterpolationVariable.new(config) }
   let(:wrapper_double) { instance_double(I18n::Hygiene::Wrapper, keys_to_check: ["blah"]) }
-  let(:variable_checker_double) { instance_double(I18n::Hygiene::VariableChecker, mismatched_variables_found?: false) }
+  let(:variable_checker_double) { instance_double(I18n::Hygiene::VariableChecker) }
 
   describe "#run" do
     before do
       allow(I18n::Hygiene::Wrapper).to receive(:new).and_return wrapper_double
+      allow(variable_checker_double).to receive(:mismatched_variables)
     end
 
     it "checks for missing interpolation variables in the configured locales" do
