@@ -29,10 +29,6 @@ module I18n
         @i18n_wrapper.key_found?(locale, @key)
       end
 
-      def variables_match?(locale)
-        variables(locale) == variables(@primary_locale)
-      end
-
       def variables(locale)
         collect_variables(@i18n_wrapper.value(locale, @key))
       end
