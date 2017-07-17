@@ -1,8 +1,11 @@
 module I18n
   module Hygiene
     class Result
-      def initialize(status)
+      attr_reader :message
+
+      def initialize(status, message: "")
         @status = status
+        @message = message
       end
 
       def passed?
