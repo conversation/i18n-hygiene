@@ -1,15 +1,6 @@
 module I18n
   module Hygiene
-    # Checks the usage of i18n keys in the TC codebase.
-    #
-    # TODO: This class needs some work, I had to strip out a bunch of functionality around
-    # the dynamically used keys because it was all specific to TC.
-    #
-    # We need to add a way to configure the hygiene checks to "whitelist" certain dynamic
-    # keys and so on.
-    #
-    # The other issue is that we hard code the folders we scan for fully qualified keys
-    # which should also be configurable.
+    # Checks the usage of i18n keys in the codebase.
     class KeyUsageChecker
 
       def initialize(directories:, whitelist:)
