@@ -13,17 +13,15 @@ module I18n
 
       def mismatched_variables
         @locales.each do |locale|
-          if key_defined?(locale) && !variables_match?(locale)
-            yield(locale, @key, missing_variables(locale))
-          else
-            yield(locale, @key, [])
-          end
+          yield(locale, @key, missing_variables(locale))
         end
       end
 
       private
 
       def missing_variables(locale)
+        return [] unless key_defined?(locale)
+
         variables(@primary_locale).reject { |v| variables(locale).include?(v) }
       end
 
