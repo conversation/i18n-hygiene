@@ -2,5 +2,5 @@ fr_invalid:
   translation:
     plural:
       one: "bar"
-    full_key: "baz &amp;"
+    full_key: "baz \u23ce &amp;"
     interpolation: "dont need no interpolation!"

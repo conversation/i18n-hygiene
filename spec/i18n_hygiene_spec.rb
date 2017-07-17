@@ -43,6 +43,10 @@ RSpec.describe "i18n-hygiene" do
            - en_invalid: translation.plural.one
           Finished checking.
 
+          Checking that no values contain return symbols i.e. U+23CE ...
+          - fr_invalid: translation.full_key
+          Finished checking.
+
           i18n hygiene checks failed.
         MESSAGE
       end
