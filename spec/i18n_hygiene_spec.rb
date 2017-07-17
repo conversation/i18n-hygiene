@@ -32,7 +32,6 @@ RSpec.describe "i18n-hygiene" do
           Checking all interpolation variables present...
 
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
-
           Checking for phrases that contain entities but probably shouldn't...
           - en_invalid: translation.dynamic
           - fr_invalid: translation.full_key

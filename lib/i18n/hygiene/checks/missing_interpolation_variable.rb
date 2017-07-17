@@ -28,7 +28,7 @@ module I18n
         private
 
         def failure_message(locale, key, missing_variables)
-          "#{key} for locale #{locale} is missing interpolation variable(s): #{missing_variables.join(", ")}"
+          "\n#{key} for locale #{locale} is missing interpolation variable(s): #{missing_variables.join(", ")}\n"
         end
       end
     end

@@ -36,11 +36,7 @@ module I18n
       end
 
       def print_progress(result)
-        if result.message.length > 1
-          puts "\n#{Rainbow(result.message).color(result_color(result))}\n\n"
-        else
-          print Rainbow(result.message).color(result_color(result))
-        end
+        print Rainbow(result.message).color(result_color(result))
       end
     end
   end
