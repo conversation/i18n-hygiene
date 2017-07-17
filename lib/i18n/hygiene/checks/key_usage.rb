@@ -12,11 +12,7 @@ module I18n
           puts "Checking usage of #{config.primary_locale} keys..."
           puts "(Please be patient while the codebase is searched for key usage)"
 
-          key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
-            directories: config.directories,
-            whitelist: config.whitelist
-          )
-
+          key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: config.directories)
           wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
 
           unused_keys = Parallel.map(wrapper.keys_to_check(config.primary_locale)) { |key|

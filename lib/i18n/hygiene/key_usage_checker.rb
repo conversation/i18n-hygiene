@@ -3,21 +3,16 @@ module I18n
     # Checks the usage of i18n keys in the codebase.
     class KeyUsageChecker
 
-      def initialize(directories:, whitelist:)
+      def initialize(directories:)
         @directories = directories
-        @whitelist = whitelist
         @tool = ag_or_ack
       end
 
       def used?(key)
-        whitelisted?(key) || i18n_config_key?(key) || fully_qualified_key_used?(key)
+        i18n_config_key?(key) || fully_qualified_key_used?(key)
       end
 
       private
-
-      def whitelisted?(key)
-        @whitelist.include?(key)
-      end
 
       def fully_qualified_key_used?(key)
         if pluralized_key_used?(key)

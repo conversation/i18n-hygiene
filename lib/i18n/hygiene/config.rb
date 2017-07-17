@@ -4,7 +4,6 @@ module I18n
       attr_writer :directories
       attr_writer :primary_locale
       attr_writer :locales
-      attr_writer :whitelist
       attr_writer :keys_to_skip
 
       def directories
@@ -17,10 +16,6 @@ module I18n
 
       def locales
         @locales ||= []
-      end
-
-      def whitelist
-        @whitelist ||= []
       end
 
       def keys_to_skip
