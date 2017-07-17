@@ -6,6 +6,7 @@ require 'i18n/hygiene/checks/html_entity'
 require 'i18n/hygiene/checks/key_usage'
 require 'i18n/hygiene/checks/missing_interpolation_variable'
 require 'i18n/hygiene/checks/script_tag'
+require 'i18n/hygiene/checks/unexpected_return_symbol'
 
 module I18n
   module Hygiene
@@ -15,6 +16,7 @@ module I18n
         I18n::Hygiene::Checks::MissingInterpolationVariable,
         I18n::Hygiene::Checks::HtmlEntity,
         I18n::Hygiene::Checks::ScriptTag,
+        I18n::Hygiene::Checks::UnexpectedReturnSymbol,
       ]
 
       def initialize(task_name = :hygiene)
@@ -61,4 +63,3 @@ module I18n
     end
   end
 end
-
