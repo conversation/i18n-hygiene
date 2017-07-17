@@ -15,6 +15,7 @@ module I18n
       def initialize(directories:, whitelist:)
         @directories = directories
         @whitelist = whitelist
+        @tool = ag_or_ack
       end
 
       def used?(key)
@@ -31,15 +32,17 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          %x<#{ag_or_ack} #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
+          %x<#{@tool} #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
         end
       end
 
       def ag_or_ack
-        if %x<which ag | wc -l>.strip.to_i == 1
+        if system("which ag > /dev/null")
           return "ag"
-        else
+        elsif system("which ack > /dev/null")
           return "ack --type-add=js=.coffee"
+        else
+          raise "Must have either ag (silversearcher-ag) or ack installed."
         end
       end
 
