@@ -29,12 +29,10 @@ RSpec.describe "i18n-hygiene" do
           translation.dynamic is unused.
           Finished checking.
 
-          Checking for mismatching interpolation variables...
+          Checking all interpolation variables present...
+          .
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
-          translation.interpolation
-          Finished checking.
-
-          Checking for phrases that contain entities but probably shouldn't...
+          ..Checking for phrases that contain entities but probably shouldn't...
           - en_invalid: translation.dynamic
           - fr_invalid: translation.full_key
           Finished checking.
