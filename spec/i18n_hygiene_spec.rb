@@ -38,7 +38,8 @@ RSpec.describe "i18n-hygiene" do
           i18n-hygiene/Unexpected HTML entity:
             fr_invalid: translation.full_key
 
-          en_invalid: translation.plural.one has unexpected script tag.
+          i18n-hygiene/Unexpected Script Tag:
+            en_invalid: translation.plural.one
 
           fr_invalid: translation.full_key has unexpected return symbol (U+23CE).
 

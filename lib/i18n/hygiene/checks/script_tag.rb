@@ -2,6 +2,7 @@ require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/keys_with_script_tags'
 require 'i18n/hygiene/result'
 require 'i18n/hygiene/wrapper'
+require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
@@ -13,7 +14,12 @@ module I18n
           keys_with_script_tags = I18n::Hygiene::KeysWithScriptTags.new(i18n_wrapper: wrapper)
 
           keys_with_script_tags.each do |key|
-            yield Result.new(:failure, message: "\n#{key} has unexpected script tag.\n")
+            message = ErrorMessageBuilder.new
+              .title("Unexpected Script Tag")
+              .key(key)
+              .create
+
+            yield Result.new(:failure, message: message)
           end
         end
 
