@@ -8,22 +8,12 @@ module I18n
     module Checks
       class HtmlEntity < Base
         def run
-          puts "Checking for phrases that contain entities but probably shouldn't..."
-
           wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
 
           keys_with_entities = I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
 
           keys_with_entities.each do |key|
-            puts "- #{key}"
-          end
-
-          puts "Finished checking.\n\n"
-
-          if keys_with_entities.any?
-            yield Result.new(:failure)
-          else
-            yield Result.new(:pass)
+            yield Result.new(:failure, message: "\n#{key} has unexpected html entity.\n")
           end
         end
 

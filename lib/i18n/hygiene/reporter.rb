@@ -19,9 +19,9 @@ module I18n
 
       def report
         if passed?
-          puts Rainbow("i18n hygiene checks passed.").green
+          puts Rainbow("\ni18n hygiene checks passed.").green
         else
-          puts Rainbow("i18n hygiene checks failed.").red
+          puts Rainbow("\ni18n hygiene checks failed.").red
         end
       end
 

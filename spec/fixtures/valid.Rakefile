@@ -10,4 +10,5 @@ I18n::Hygiene::RakeTask.new(:default) do |config|
   config.primary_locale = :en_valid
   config.locales = [:fr_valid]
   config.keys_to_skip = "translation.dynamic"
+  config.concurrency = 1
 end

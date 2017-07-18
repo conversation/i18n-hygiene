@@ -24,26 +24,18 @@ RSpec.describe "i18n-hygiene" do
         expect {
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
-          Checking usage of en_invalid keys...
-          (Please be patient while the codebase is searched for key usage)
+
           translation.dynamic is unused.
-          Finished checking.
-
-          Checking all interpolation variables present...
-          .
+          ....
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
-          ..Checking for phrases that contain entities but probably shouldn't...
-          - en_invalid: translation.dynamic
-          - fr_invalid: translation.full_key
-          Finished checking.
+          ..
+          en_invalid: translation.dynamic has unexpected html entity.
 
-          Checking that no values contain script tags ...
-           - en_invalid: translation.plural.one
-          Finished checking.
+          fr_invalid: translation.full_key has unexpected html entity.
 
-          Checking that no values contain return symbols i.e. U+23CE ...
-          - fr_invalid: translation.full_key
-          Finished checking.
+          en_invalid: translation.plural.one has unexpected script tag.
+
+          fr_invalid: translation.full_key has unexpected return symbol (U+23CE).
 
           i18n hygiene checks failed.
         MESSAGE

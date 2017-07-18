@@ -9,4 +9,5 @@ I18n::Hygiene::RakeTask.new(:default) do |config|
   config.directories = ["spec/fixtures/project/app", "spec/fixtures/project/lib"]
   config.primary_locale = :en_invalid
   config.locales = [:fr_invalid]
+  config.concurrency = 1
 end

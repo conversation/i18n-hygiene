@@ -8,8 +8,6 @@ module I18n
     module Checks
       class MissingInterpolationVariable < Base
         def run
-          puts "Checking all interpolation variables present..."
-
           wrapper = I18n::Hygiene::Wrapper.new
 
           wrapper.keys_to_check(config.primary_locale).select do |key|
