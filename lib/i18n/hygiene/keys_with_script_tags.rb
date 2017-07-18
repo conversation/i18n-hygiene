@@ -7,7 +7,7 @@ module I18n
     class KeysWithScriptTags
       include Enumerable
 
-      SCRIPT_TAG_REGEX = /<script>.*<\/script>/
+      SCRIPT_TAG_REGEX = /<script.*/
 
       def initialize(i18n_wrapper: nil)
         @matcher = I18n::Hygiene::KeysWithMatchedValue.new(SCRIPT_TAG_REGEX, i18n_wrapper)
