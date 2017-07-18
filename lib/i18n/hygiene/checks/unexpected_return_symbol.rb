@@ -7,20 +7,10 @@ module I18n
     module Checks
       class UnexpectedReturnSymbol < Base
         def run
-          puts "Checking that no values contain return symbols i.e. U+23CE ..."
-
           keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new
 
           keys_with_return_symbols.each do |key|
-            puts "- #{key}"
-          end
-
-          puts "Finished checking.\n\n"
-
-          if keys_with_return_symbols.any?
-            yield Result.new(:failure)
-          else
-            yield Result.new(:pass)
+            yield Result.new(:failure, message: "\n#{key} has unexpected return symbol (U+23CE).\n")
           end
         end
 
