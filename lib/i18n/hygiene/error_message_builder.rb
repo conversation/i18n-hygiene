@@ -39,11 +39,6 @@ module  I18n
         self
       end
 
-      def location(location)
-        @location = location
-        self
-      end
-
       def create
         s = StringIO.new
         s << "\n"
@@ -67,12 +62,6 @@ module  I18n
           s << LEFT_PAD * 2
           s << "Expected: "
           s << Rainbow(@expected).color(:orange)
-        end
-
-        if @location
-          s << "\n"
-          s << LEFT_PAD
-          s << Rainbow(@location).cyan
         end
 
         s << "\n"
