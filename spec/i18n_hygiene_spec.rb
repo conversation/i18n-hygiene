@@ -28,7 +28,9 @@ RSpec.describe "i18n-hygiene" do
           i18n-hygiene/Unused Translation:
             translation.dynamic
           ....
-          translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
+          i18n-hygiene/Missing Interpolation Variable(s):
+            fr_invalid.translation.interpolation
+              Expected: qux
           ..
           i18n-hygiene/Unexpected HTML entity:
             en_invalid: translation.dynamic
