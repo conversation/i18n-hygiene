@@ -9,5 +9,5 @@ I18n::Hygiene::RakeTask.new(:default) do |config|
   config.directories = ["spec/fixtures/project/app", "spec/fixtures/project/lib"]
   config.primary_locale = :en_valid
   config.locales = [:fr_valid]
-  config.whitelist = "translation.dynamic"
+  config.keys_to_skip = "translation.dynamic"
 end
