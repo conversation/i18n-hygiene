@@ -15,7 +15,7 @@ module I18n
 
           keys_with_script_tags.each do |key|
             message = ErrorMessageBuilder.new
-              .title("Unexpected Script Tag")
+              .title("Unexpected script tag")
               .key(key)
               .create
 

@@ -17,7 +17,7 @@ module I18n
             checker.mismatched_variables do |locale, key, missing_variables|
               if missing_variables.any?
                 message = ErrorMessageBuilder.new
-                  .title("Missing Interpolation Variable(s)")
+                  .title("Missing interpolation variable(s)")
                   .locale(locale)
                   .key(key)
                   .expected(missing_variables.join(", "))

@@ -18,7 +18,7 @@ module I18n
               yield Result.new(:pass, message: ".")
             else
               message = ErrorMessageBuilder.new
-                .title("Unused Translation")
+                .title("Unused translation")
                 .key(key)
                 .create
 

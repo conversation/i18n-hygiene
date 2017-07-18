@@ -25,10 +25,10 @@ RSpec.describe "i18n-hygiene" do
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
 
-          i18n-hygiene/Unused Translation:
+          i18n-hygiene/Unused translation:
             translation.dynamic
           ....
-          i18n-hygiene/Missing Interpolation Variable(s):
+          i18n-hygiene/Missing interpolation variable(s):
             fr_invalid.translation.interpolation
               Expected: qux
           ..
@@ -38,7 +38,7 @@ RSpec.describe "i18n-hygiene" do
           i18n-hygiene/Unexpected HTML entity:
             fr_invalid: translation.full_key
 
-          i18n-hygiene/Unexpected Script Tag:
+          i18n-hygiene/Unexpected script tag:
             en_invalid: translation.plural.one
 
           i18n-hygiene/Unexpected return symbol (U+23CE):
