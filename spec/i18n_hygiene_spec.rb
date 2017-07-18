@@ -25,7 +25,8 @@ RSpec.describe "i18n-hygiene" do
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
 
-          translation.dynamic is unused.
+          i18n-hygiene/Unused Translation:
+            translation.dynamic
           ....
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
           ..
