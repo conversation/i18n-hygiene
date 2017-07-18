@@ -12,9 +12,7 @@ module I18n
       end
 
       def mismatched_variables
-        @locales.each do |locale|
-          yield(locale, @key, missing_variables(locale))
-        end
+        @locales.each { |locale| yield locale, @key, missing_variables(locale) }
       end
 
       private
