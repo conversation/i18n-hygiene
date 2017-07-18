@@ -18,6 +18,7 @@ module I18n
               .title("Unexpected HTML entity")
               .locale(locale)
               .key(key)
+              .translation(wrapper.value(locale, key))
               .create
 
             yield Result.new(:failure, message: message)

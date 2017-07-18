@@ -20,6 +20,7 @@ module I18n
                   .title("Missing interpolation variable(s)")
                   .locale(locale)
                   .key(key)
+                  .translation(wrapper.value(locale, key))
                   .expected(missing_variables.join(", "))
                   .create
 

@@ -29,20 +29,20 @@ RSpec.describe "i18n-hygiene" do
             translation.dynamic
           ....
           i18n-hygiene/Missing interpolation variable(s):
-            fr_invalid.translation.interpolation
+            fr_invalid.translation.interpolation: "dont need no interpolation!"
               Expected: qux
           ..
           i18n-hygiene/Unexpected HTML entity:
-            en_invalid.translation.dynamic
+            en_invalid.translation.dynamic: "foo &quot;"
 
           i18n-hygiene/Unexpected HTML entity:
-            fr_invalid.translation.full_key
+            fr_invalid.translation.full_key: "baz ⏎ &amp;"
 
           i18n-hygiene/Unexpected script tag:
-            en_invalid.translation.plural.one
+            en_invalid.translation.plural.one: "<script>bar</script>"
 
           i18n-hygiene/Unexpected return symbol (U+23CE):
-            fr_invalid.translation.full_key
+            fr_invalid.translation.full_key: "baz ⏎ &amp;"
 
           i18n hygiene checks failed.
         MESSAGE

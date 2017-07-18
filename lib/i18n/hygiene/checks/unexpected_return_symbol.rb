@@ -8,13 +8,15 @@ module I18n
     module Checks
       class UnexpectedReturnSymbol < Base
         def run
-          keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new
+          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
+          keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new(i18n_wrapper: wrapper)
 
           keys_with_return_symbols.each do |locale, key|
             message = ErrorMessageBuilder.new
               .title("Unexpected return symbol (U+23CE)")
               .locale(locale)
               .key(key)
+              .translation(wrapper.value(locale, key))
               .create
 
             yield Result.new(:failure, message: message)
