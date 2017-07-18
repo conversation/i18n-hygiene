@@ -13,9 +13,10 @@ module I18n
 
           keys_with_script_tags = I18n::Hygiene::KeysWithScriptTags.new(i18n_wrapper: wrapper)
 
-          keys_with_script_tags.each do |key|
+          keys_with_script_tags.each do |locale, key|
             message = ErrorMessageBuilder.new
               .title("Unexpected script tag")
+              .locale(locale)
               .key(key)
               .create
 

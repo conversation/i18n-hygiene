@@ -13,9 +13,10 @@ module I18n
 
           keys_with_entities = I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
 
-          keys_with_entities.each do |key|
+          keys_with_entities.each do |locale, key|
             message = ErrorMessageBuilder.new
               .title("Unexpected HTML entity")
+              .locale(locale)
               .key(key)
               .create
 

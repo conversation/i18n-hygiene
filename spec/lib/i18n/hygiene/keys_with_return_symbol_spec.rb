@@ -16,7 +16,7 @@ describe I18n::Hygiene::KeysWithReturnSymbol do
     end
 
     it "returns keys that include return symbol" do
-      expect(collection.to_a).to eq ["en: bar", "fr: foo"]
+      expect(collection.to_a).to eq [[:en, "bar"], [:fr, "foo"]]
     end
   end
 end

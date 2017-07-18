@@ -10,9 +10,10 @@ module I18n
         def run
           keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new
 
-          keys_with_return_symbols.each do |key|
+          keys_with_return_symbols.each do |locale, key|
             message = ErrorMessageBuilder.new
               .title("Unexpected return symbol (U+23CE)")
+              .locale(locale)
               .key(key)
               .create
 

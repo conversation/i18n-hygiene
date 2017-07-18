@@ -33,16 +33,16 @@ RSpec.describe "i18n-hygiene" do
               Expected: qux
           ..
           i18n-hygiene/Unexpected HTML entity:
-            en_invalid: translation.dynamic
+            en_invalid.translation.dynamic
 
           i18n-hygiene/Unexpected HTML entity:
-            fr_invalid: translation.full_key
+            fr_invalid.translation.full_key
 
           i18n-hygiene/Unexpected script tag:
-            en_invalid: translation.plural.one
+            en_invalid.translation.plural.one
 
           i18n-hygiene/Unexpected return symbol (U+23CE):
-            fr_invalid: translation.full_key
+            fr_invalid.translation.full_key
 
           i18n hygiene checks failed.
         MESSAGE

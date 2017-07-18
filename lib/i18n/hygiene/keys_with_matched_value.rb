@@ -8,20 +8,17 @@ module I18n
         @regex = regex
         @i18n = i18n_wrapper || I18n::Hygiene::Wrapper.new(keys_to_skip: [])
         @reject_keys = reject_keys
-        @matching_keys = load_matching_keys
       end
 
       def each(&block)
-        @matching_keys.each(&block)
+        locales.each do |locale|
+          matching_keys(locale).each do |key|
+            block.call(locale, key)
+          end
+        end
       end
 
       private
-
-      def load_matching_keys
-        locales.inject([]) do |results, locale|
-          results + matching_keys(locale).map { |key| "#{locale}: #{key}" }
-        end
-      end
 
       def matching_keys(locale)
         keys_to_check(locale).select { |key| i18n.value(locale, key).to_s.match(regex) }
