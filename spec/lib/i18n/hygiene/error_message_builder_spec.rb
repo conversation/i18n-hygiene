@@ -21,6 +21,7 @@ RSpec.describe I18n::Hygiene::ErrorMessageBuilder do
           .locale("ja")
           .key("ketchup")
           .translation("ケチャップ")
+          .expected("lots of ketchup use!")
           .location("./config/locales/ja.yml:765")
       end
 
@@ -29,6 +30,7 @@ RSpec.describe I18n::Hygiene::ErrorMessageBuilder do
 
           \e[31mi18n-hygiene/Condiment Missing:\e[0m
             ja.ketchup: \e[33m\"ケチャップ"\e[0m
+              Expected: \e[38;5;214mlots of ketchup use!\e[0m
             \e[36m./config/locales/ja.yml:765\e[0m
         STRING
       end

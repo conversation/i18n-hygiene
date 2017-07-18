@@ -29,6 +29,11 @@ module  I18n
         self
       end
 
+      def expected(expected)
+        @expected = expected
+        self
+      end
+
       def translation(translation)
         @translation = translation
         self
@@ -55,6 +60,13 @@ module  I18n
         if @translation
           s << ": "
           s << Rainbow("\"#{truncated_translation}\"").yellow
+        end
+
+        if @expected
+          s << "\n"
+          s << LEFT_PAD * 2
+          s << "Expected: "
+          s << Rainbow(@expected).color(:orange)
         end
 
         if @location
