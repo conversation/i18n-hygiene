@@ -12,7 +12,7 @@ describe I18n::Hygiene::KeysWithScriptTags do
       allow(i18n_wrapper).to receive(:value).with(:en, "foo") { "one two" }
       allow(i18n_wrapper).to receive(:value).with(:en, "bar") { "<script>one two</script>" }
       allow(i18n_wrapper).to receive(:value).with(:en, "baz") { "one two" }
-      allow(i18n_wrapper).to receive(:value).with(:fr, "foo") { "<script>one two</script>" }
+      allow(i18n_wrapper).to receive(:value).with(:fr, "foo") { "<script src=\"https://js.stripe.com/v2/\"></script>" }
       allow(i18n_wrapper).to receive(:value).with(:fr, "bar") { "one two" }
       allow(i18n_wrapper).to receive(:value).with(:fr, "baz") { "<script>one two</div>" }
     end
