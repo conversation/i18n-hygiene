@@ -33,10 +33,8 @@ RSpec.describe "i18n-hygiene" do
           en_invalid: translation.dynamic has unexpected html entity.
 
           fr_invalid: translation.full_key has unexpected html entity.
-          Checking that no values contain script tags ...
-           - en_invalid: translation.plural.one
-          Finished checking.
 
+          en_invalid: translation.plural.one has unexpected script tag.
           Checking that no values contain return symbols i.e. U+23CE ...
           - fr_invalid: translation.full_key
           Finished checking.
