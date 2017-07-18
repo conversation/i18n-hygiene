@@ -9,26 +9,15 @@ module I18n
     module Checks
       class KeyUsage < Base
         def run
-          puts "Checking usage of #{config.primary_locale} keys..."
-          puts "(Please be patient while the codebase is searched for key usage)"
-
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: config.directories)
           wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
 
-          unused_keys = Parallel.map(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) { |key|
-            key unless key_usage_checker.used?(key)
-          }.compact
-
-          unused_keys.each do |key|
-            puts "#{key} is unused."
-          end
-
-          puts "Finished checking.\n\n"
-
-          if unused_keys.any?
-            yield Result.new(:failure)
-          else
-            yield Result.new(:pass)
+          Parallel.each(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) do |key|
+            if key_usage_checker.used?(key)
+              yield Result.new(:pass, message: ".")
+            else
+              yield Result.new(:failure, message: "\n#{key} is unused.\n")
+            end
           end
         end
       end

@@ -24,12 +24,9 @@ RSpec.describe "i18n-hygiene" do
         expect {
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
-          Checking usage of en_invalid keys...
-          (Please be patient while the codebase is searched for key usage)
-          translation.dynamic is unused.
-          Finished checking.
 
-          Checking all interpolation variables present...
+          translation.dynamic is unused.
+          ...Checking all interpolation variables present...
           .
           translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
           ..Checking for phrases that contain entities but probably shouldn't...
