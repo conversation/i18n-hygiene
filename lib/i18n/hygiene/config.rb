@@ -24,7 +24,7 @@ module I18n
       end
 
       def concurrency
-        @concurrency ||= nil
+        @concurrency
       end
     end
   end
