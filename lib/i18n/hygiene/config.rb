@@ -5,6 +5,7 @@ module I18n
       attr_writer :primary_locale
       attr_writer :locales
       attr_writer :keys_to_skip
+      attr_writer :concurrency
 
       def directories
         @directories ||= []
@@ -20,6 +21,10 @@ module I18n
 
       def keys_to_skip
         @keys_to_skip ||= []
+      end
+
+      def concurrency
+        @concurrency ||= nil
       end
     end
   end

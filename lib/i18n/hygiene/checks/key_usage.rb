@@ -15,7 +15,7 @@ module I18n
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: config.directories)
           wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
 
-          unused_keys = Parallel.map(wrapper.keys_to_check(config.primary_locale)) { |key|
+          unused_keys = Parallel.map(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) { |key|
             key unless key_usage_checker.used?(key)
           }.compact
 
