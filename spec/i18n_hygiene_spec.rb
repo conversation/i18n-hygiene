@@ -36,6 +36,7 @@ RSpec.describe "i18n-hygiene" do
           en_invalid: translation.plural.one has unexpected script tag.
 
           fr_invalid: translation.full_key has unexpected return symbol (U+23CE).
+
           i18n hygiene checks failed.
         MESSAGE
       end
