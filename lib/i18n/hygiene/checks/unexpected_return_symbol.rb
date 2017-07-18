@@ -1,6 +1,7 @@
 require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/keys_with_return_symbol'
 require 'i18n/hygiene/result'
+require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
@@ -10,7 +11,12 @@ module I18n
           keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new
 
           keys_with_return_symbols.each do |key|
-            yield Result.new(:failure, message: "\n#{key} has unexpected return symbol (U+23CE).\n")
+            message = ErrorMessageBuilder.new
+              .title("Unexpected return symbol (U+23CE)")
+              .key(key)
+              .create
+
+            yield Result.new(:failure, message: message)
           end
         end
 
