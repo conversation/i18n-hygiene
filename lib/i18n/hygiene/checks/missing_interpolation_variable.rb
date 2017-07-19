@@ -25,8 +25,6 @@ module I18n
                   .create
 
                 yield Result.new(:failure, message: message)
-              else
-                yield Result.new(:pass, message: ".")
               end
             end
           end

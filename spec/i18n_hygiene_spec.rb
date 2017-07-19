@@ -27,11 +27,11 @@ RSpec.describe "i18n-hygiene" do
 
           i18n-hygiene/Unused translation:
             translation.dynamic
-          ....
+          ...
           i18n-hygiene/Missing interpolation variable(s):
             fr_invalid.translation.interpolation: "dont need no interpolation!"
               Expected: qux
-          ..
+
           i18n-hygiene/Unexpected HTML entity:
             en_invalid.translation.dynamic: "foo &quot;"
 
