@@ -2,8 +2,8 @@ Gem::Specification.new do |s|
   s.name        = 'i18n-hygiene'
   s.version     = '0.1.0'
   s.license     = 'MIT'
-  s.summary     = "Helps maintain translations."
-  s.description = "Provides rake tasks to help maintain translations."
+  s.summary     = "A linter for translation data in ruby applications"
+  s.description = "Provides a rake task that checks locale data for likely issues. Intended to be used in build pipelines to detect problems before they reach production"
   s.authors     = [ "Nick Browne"," Keith Pitty" ]
   s.email       = "dev@theconversation.edu.au"
   s.files       = `git ls-files -- lib/*`.split("\n")
