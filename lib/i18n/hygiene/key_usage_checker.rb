@@ -5,6 +5,8 @@ module I18n
 
       def initialize(directories:)
         @directories = directories
+
+        raise "Must have git installed!" unless system("which git > /dev/null")
       end
 
       def used?(key)
