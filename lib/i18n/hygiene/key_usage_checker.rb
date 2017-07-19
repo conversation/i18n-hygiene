@@ -5,7 +5,6 @@ module I18n
 
       def initialize(directories:)
         @directories = directories
-        @tool = ag_or_ack
       end
 
       def used?(key)
@@ -18,17 +17,7 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          %x<#{@tool} #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
-        end
-      end
-
-      def ag_or_ack
-        if system("which ag > /dev/null")
-          return "ag"
-        elsif system("which ack > /dev/null")
-          return "ack --type-add=js=.coffee"
-        else
-          raise "Must have either ag (silversearcher-ag) or ack installed."
+          %x<git grep #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
         end
       end
 
