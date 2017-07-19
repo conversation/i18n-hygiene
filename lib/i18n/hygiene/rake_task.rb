@@ -41,7 +41,7 @@ module I18n
 
           reporter.report
 
-          fail unless reporter.passed?
+          exit(1) unless reporter.passed?
         end
       end
 
