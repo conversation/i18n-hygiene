@@ -1,3 +1,5 @@
+require 'parallel'
+
 module I18n
   module Hygiene
     class Config
@@ -24,7 +26,7 @@ module I18n
       end
 
       def concurrency
-        @concurrency
+        @concurrency || Parallel.processor_count
       end
     end
   end
