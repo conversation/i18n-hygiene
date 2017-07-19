@@ -16,10 +16,9 @@ describe I18n::Hygiene::KeyUsageChecker do
     end
 
     context "shelling out" do
-      # stub system calls to ack/ag and wc
+      # stub system calls to git grep and wc
       before do
-        allow(checker_instance).to receive(:ag_or_ack).and_return("ag")
-        expect(checker_instance).to receive(:`).with("ag my.key you only yolo once | wc -l").and_return(wc_result)
+        expect(checker_instance).to receive(:`).with("git grep my.key you only yolo once | wc -l").and_return(wc_result)
       end
 
       context "wc is zero" do
