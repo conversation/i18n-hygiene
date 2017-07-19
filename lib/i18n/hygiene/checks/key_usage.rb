@@ -3,6 +3,7 @@ require 'i18n/hygiene/wrapper'
 require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/key_usage_checker'
 require 'i18n/hygiene/result'
+require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
@@ -16,7 +17,12 @@ module I18n
             if key_usage_checker.used?(key)
               yield Result.new(:pass, message: ".")
             else
-              yield Result.new(:failure, message: "\n#{key} is unused.\n")
+              message = ErrorMessageBuilder.new
+                .title("Unused translation")
+                .key(key)
+                .create
+
+              yield Result.new(:failure, message: message)
             end
           end
         end

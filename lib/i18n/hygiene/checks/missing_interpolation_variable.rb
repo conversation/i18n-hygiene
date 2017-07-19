@@ -2,6 +2,7 @@ require 'i18n/hygiene/wrapper'
 require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/variable_checker'
 require 'i18n/hygiene/result'
+require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
@@ -15,18 +16,18 @@ module I18n
 
             checker.mismatched_variables do |locale, key, missing_variables|
               if missing_variables.any?
-                yield Result.new(:failure, message: failure_message(locale, key, missing_variables))
-              else
-                yield Result.new(:pass, message: ".")
+                message = ErrorMessageBuilder.new
+                  .title("Missing interpolation variable(s)")
+                  .locale(locale)
+                  .key(key)
+                  .translation(wrapper.value(locale, key))
+                  .expected(missing_variables.join(", "))
+                  .create
+
+                yield Result.new(:failure, message: message)
               end
             end
           end
-        end
-
-        private
-
-        def failure_message(locale, key, missing_variables)
-          "\n#{key} for locale #{locale} is missing interpolation variable(s): #{missing_variables.join(", ")}\n"
         end
       end
     end

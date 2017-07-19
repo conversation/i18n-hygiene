@@ -25,17 +25,24 @@ RSpec.describe "i18n-hygiene" do
           system("#{shell_cmd} 2> /dev/null")
         }.to output(<<~MESSAGE).to_stdout_from_any_process
 
-          translation.dynamic is unused.
-          ....
-          translation.interpolation for locale fr_invalid is missing interpolation variable(s): qux
-          ..
-          en_invalid: translation.dynamic has unexpected html entity.
+          i18n-hygiene/Unused translation:
+            translation.dynamic
+          ...
+          i18n-hygiene/Missing interpolation variable(s):
+            fr_invalid.translation.interpolation: "dont need no interpolation!"
+              Expected: qux
 
-          fr_invalid: translation.full_key has unexpected html entity.
+          i18n-hygiene/Unexpected HTML entity:
+            en_invalid.translation.dynamic: "foo &quot;"
 
-          en_invalid: translation.plural.one has unexpected script tag.
+          i18n-hygiene/Unexpected HTML entity:
+            fr_invalid.translation.full_key: "baz ⏎ &amp;"
 
-          fr_invalid: translation.full_key has unexpected return symbol (U+23CE).
+          i18n-hygiene/Unexpected script tag:
+            en_invalid.translation.plural.one: "<script>bar</script>"
+
+          i18n-hygiene/Unexpected return symbol (U+23CE):
+            fr_invalid.translation.full_key: "baz ⏎ &amp;"
 
           i18n hygiene checks failed.
         MESSAGE

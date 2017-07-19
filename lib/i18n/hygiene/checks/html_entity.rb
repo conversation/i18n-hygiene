@@ -2,6 +2,7 @@ require 'i18n/hygiene/checks/base'
 require 'i18n/hygiene/keys_with_entities'
 require 'i18n/hygiene/result'
 require 'i18n/hygiene/wrapper'
+require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
@@ -12,8 +13,15 @@ module I18n
 
           keys_with_entities = I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
 
-          keys_with_entities.each do |key|
-            yield Result.new(:failure, message: "\n#{key} has unexpected html entity.\n")
+          keys_with_entities.each do |locale, key|
+            message = ErrorMessageBuilder.new
+              .title("Unexpected HTML entity")
+              .locale(locale)
+              .key(key)
+              .translation(wrapper.value(locale, key))
+              .create
+
+            yield Result.new(:failure, message: message)
           end
         end
 

@@ -18,7 +18,7 @@ describe I18n::Hygiene::KeysWithScriptTags do
     end
 
     it "returns keys that include script tags" do
-      expect(collection.to_a).to eq(["en: bar", "fr: foo", "fr: baz"])
+      expect(collection.to_a).to eq([[:en, "bar"], [:fr, "foo"], [:fr, "baz"]])
     end
   end
 end

@@ -21,7 +21,7 @@ describe I18n::Hygiene::KeysWithEntities do
       end
 
       it "returns the appropriate result" do
-        expect(collection.to_a).to eq ["en: bar", "fr: foo"]
+        expect(collection.to_a).to eq [[:en, "bar"], [:fr, "foo"]]
       end
     end
   end
