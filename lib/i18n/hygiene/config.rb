@@ -18,7 +18,7 @@ module I18n
       end
 
       def locales
-        @locales ||= []
+        @locales ||= ::I18n.available_locales
       end
 
       def keys_to_skip
