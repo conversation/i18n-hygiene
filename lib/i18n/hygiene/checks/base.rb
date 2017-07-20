@@ -11,10 +11,14 @@ module I18n
           raise "#run must be implemented by subclass"
         end
 
-        private
+        protected
 
         def config
           @config
+        end
+
+        def all_locales
+          config.all_locales
         end
       end
     end
