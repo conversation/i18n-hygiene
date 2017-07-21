@@ -22,13 +22,6 @@ module I18n
             yield Result.new(:failure, message: message)
           end
         end
-
-        private
-
-        def all_locales
-          [config.primary_locale] + config.locales
-        end
-
       end
     end
   end
