@@ -1,28 +1,19 @@
-require 'i18n/hygiene/checks/base'
+require 'i18n/hygiene/checks/unexpected_regex_match'
 require 'i18n/hygiene/keys_with_script_tags'
-require 'i18n/hygiene/result'
-require 'i18n/hygiene/wrapper'
-require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
     module Checks
-      class ScriptTag < Base
-        def run
-          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
+      class ScriptTag < UnexpectedRegexMatch
 
-          keys_with_script_tags = I18n::Hygiene::KeysWithScriptTags.new(i18n_wrapper: wrapper)
+        protected
 
-          keys_with_script_tags.each do |locale, key|
-            message = ErrorMessageBuilder.new
-              .title("Unexpected script tag")
-              .locale(locale)
-              .key(key)
-              .translation(wrapper.value(locale, key))
-              .create
+        def keys
+          I18n::Hygiene::KeysWithScriptTags.new(i18n_wrapper: wrapper)
+        end
 
-            yield Result.new(:failure, message: message)
-          end
+        def title
+          "Unexpected script tag"
         end
       end
     end
