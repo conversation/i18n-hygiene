@@ -8,7 +8,6 @@ module I18n
       attr_writer :locales
       attr_writer :keys_to_skip
       attr_writer :concurrency
-      attr_reader :all_locales
 
       def directories
         @directories ||= []
