@@ -1,28 +1,19 @@
-require 'i18n/hygiene/checks/base'
+require 'i18n/hygiene/checks/unexpected_regex_match'
 require 'i18n/hygiene/keys_with_entities'
-require 'i18n/hygiene/result'
-require 'i18n/hygiene/wrapper'
-require 'i18n/hygiene/error_message_builder'
 
 module I18n
   module Hygiene
     module Checks
-      class HtmlEntity < Base
-        def run
-          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
+      class HtmlEntity < UnexpectedRegexMatch
 
-          keys_with_entities = I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
+        protected
 
-          keys_with_entities.each do |locale, key|
-            message = ErrorMessageBuilder.new
-              .title("Unexpected HTML entity")
-              .locale(locale)
-              .key(key)
-              .translation(wrapper.value(locale, key))
-              .create
+        def keys
+          I18n::Hygiene::KeysWithEntities.new(i18nwrapper: wrapper)
+        end
 
-            yield Result.new(:failure, message: message)
-          end
+        def title
+          "Unexpected HTML entity"
         end
       end
     end
