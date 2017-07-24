@@ -19,11 +19,14 @@ module I18n
         I18n::Hygiene::Checks::UnexpectedReturnSymbol,
       ]
 
-      def initialize(task_name = :hygiene)
+      def initialize(task_name = :hygiene, &block)
         config = Config.new
 
-        if block_given?
-          yield config
+        if block
+          block.call(config)
+
+          # We always want to exclude the file that is configuring this rake task
+          config.exclude_files = config.exclude_files + [relative_path_for(block.source_location)]
         end
 
         unless ::Rake.application.last_description
@@ -46,6 +49,10 @@ module I18n
       end
 
       private
+
+      def relative_path_for(source_location)
+        source_location[0].gsub("#{pwd}/", "")
+      end
 
       def reporter
         @reporter ||= Reporter.new
