@@ -21,10 +21,12 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          options = [git_grep_include, git_grep_exclude].reject(&:empty?).join(" ")
-
-          %x<git grep #{key} #{options} | wc -l>.strip.to_i > 0
+          %x<git grep #{key} #{git_grep_options} | wc -l>.strip.to_i > 0
         end
+      end
+
+      def git_grep_options
+        [git_grep_include, git_grep_exclude].reject(&:empty?).join(" ")
       end
 
       def git_grep_include
