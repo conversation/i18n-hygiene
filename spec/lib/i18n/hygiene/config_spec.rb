@@ -37,4 +37,11 @@ RSpec.describe I18n::Hygiene::Config do
       expect(config.directories).to eq ["app", "lib"]
     end
   end
+
+  describe "#scopes_to_exclude=" do
+    it "sets scopes to exclude" do
+      config.scopes_to_exclude = [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
+      expect(config.scopes_to_exclude).to eq [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
+    end
+  end
 end

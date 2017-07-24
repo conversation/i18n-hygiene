@@ -10,6 +10,7 @@ module I18n
       attr_writer :locales
       attr_writer :keys_to_skip
       attr_writer :concurrency
+      attr_writer :scopes_to_exclude
 
       def exclude_files
         @exclude_files ||= []
@@ -41,6 +42,10 @@ module I18n
 
       def concurrency
         @concurrency || Parallel.processor_count
+      end
+
+      def scopes_to_exclude
+        @scopes_to_exclude ||= []
       end
     end
   end
