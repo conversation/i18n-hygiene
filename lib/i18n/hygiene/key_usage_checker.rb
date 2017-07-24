@@ -3,8 +3,9 @@ module I18n
     # Checks the usage of i18n keys in the codebase.
     class KeyUsageChecker
 
-      def initialize(directories:)
+      def initialize(directories:, exclude_files: [])
         @directories = directories
+        @exclude_files = exclude_files
 
         raise "Must have git installed!" unless system("which git > /dev/null")
       end
@@ -19,8 +20,16 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          %x<git grep #{key} #{@directories.join(" ")} | wc -l>.strip.to_i > 0
+          options = [@directories.join(" "), git_grep_exclude].reject(&:empty?).join(" ")
+
+          %x<git grep #{key} #{options} | wc -l>.strip.to_i > 0
         end
+      end
+
+      def git_grep_exclude
+        @exclude_files.map { |file|
+          "':(exclude)*#{file}'"
+        }.join(" ")
       end
 
       def i18n_config_key?(key)
