@@ -1,6 +1,5 @@
 require 'i18n/hygiene/key_usage_checker'
 require 'i18n/hygiene/keys_with_matched_value'
-require 'i18n/hygiene/keys_with_return_symbol'
 require 'i18n/hygiene/locale_translations'
 require 'i18n/hygiene/variable_checker'
 require 'i18n/hygiene/wrapper'

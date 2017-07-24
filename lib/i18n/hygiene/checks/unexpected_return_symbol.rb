@@ -1,5 +1,5 @@
 require 'i18n/hygiene/checks/base'
-require 'i18n/hygiene/keys_with_return_symbol'
+require 'i18n/hygiene/keys_with_matched_value'
 require 'i18n/hygiene/result'
 require 'i18n/hygiene/error_message_builder'
 
@@ -7,9 +7,11 @@ module I18n
   module Hygiene
     module Checks
       class UnexpectedReturnSymbol < Base
+        RETURN_SYMBOL_REGEX = /\u23ce/
+
         def run
           wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
-          keys_with_return_symbols = I18n::Hygiene::KeysWithReturnSymbol.new(i18n_wrapper: wrapper)
+          keys_with_return_symbols = I18n::Hygiene::KeysWithMatchedValue.new(RETURN_SYMBOL_REGEX, wrapper)
 
           keys_with_return_symbols.each do |locale, key|
             message = ErrorMessageBuilder.new
