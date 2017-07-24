@@ -15,8 +15,11 @@ module I18n
             exclude_files: config.exclude_files,
             file_extensions: config.file_extensions
           )
-
-          wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
+          
+          wrapper = I18n::Hygiene::Wrapper.new(
+            keys_to_skip: config.keys_to_skip,
+            scopes_to_exclude: config.scopes_to_exclude
+          )
 
           Parallel.each(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) do |key|
             if key_usage_checker.used?(key)

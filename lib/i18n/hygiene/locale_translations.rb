@@ -10,9 +10,10 @@ module I18n
       # These are i18n keys provided by Rails. We cannot exclude them at the :helpers
       # scope level because we do have some TC i18n keys scoped within :helpers.
 
-      def initialize(translations:, keys_to_skip:)
+      def initialize(translations:, keys_to_skip:, scopes_to_exclude:)
         @translations = translations
         @keys_to_skip = keys_to_skip || []
+        @scopes_to_exclude = scopes_to_exclude || []
       end
 
       def keys_to_check
@@ -24,35 +25,15 @@ module I18n
       private
 
       def translations_to_check
-        @translations.reject { |k, _v| non_tc_scopes.include? k }
-      end
-
-      def non_tc_scopes
-        scopes_from_rails + scopes_from_devise + scopes_from_kaminari + scopes_from_i18n_country_select + scopes_from_faker
-      end
-
-      def scopes_from_rails
-        [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
-      end
-
-      def scopes_from_devise
-        [ :devise ]
-      end
-
-      def scopes_from_kaminari
-        [ :views ]
-      end
-
-      def scopes_from_i18n_country_select
-        [ :countries ]
-      end
-
-      def scopes_from_faker
-        [ :faker ]
+        @translations.reject { |k, _v| scopes_to_exclude.include? k }
       end
 
       def keys_to_skip
         @keys_to_skip
+      end
+
+      def scopes_to_exclude
+        @scopes_to_exclude
       end
 
       def fully_qualified_keys(hash)
