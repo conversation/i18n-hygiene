@@ -10,7 +10,12 @@ module I18n
     module Checks
       class KeyUsage < Base
         def run
-          key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(directories: config.directories)
+          key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
+            directories: config.directories,
+            exclude_files: config.exclude_files,
+            file_extensions: config.file_extensions
+          )
+
           wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
 
           Parallel.each(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) do |key|

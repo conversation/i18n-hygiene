@@ -14,7 +14,11 @@ RSpec.describe I18n::Hygiene::Checks::KeyUsage do
 
     it "checks for missing interpolation variables in the configured locales" do
       expect(I18n::Hygiene::KeyUsageChecker).to receive(:new)
-        .with(directories: ["app", "lib"]).and_return key_usage_checker_double
+        .with(
+          directories: ["app", "lib"],
+          exclude_files: [],
+          file_extensions: ["rb", "erb", "coffee", "js", "jsx"]
+        ).and_return key_usage_checker_double
 
       instance.run do |result|
         expect(result.passed?).to eq true
