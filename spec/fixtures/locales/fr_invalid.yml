@@ -1,5 +1,6 @@
 fr_invalid:
   translation:
+    script: "blah"
     ignored: "ignorer"
     plural:
       one: "bar"

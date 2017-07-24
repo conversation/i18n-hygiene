@@ -31,6 +31,9 @@ RSpec.describe "i18n-hygiene" do
           i18n-hygiene/Unused translation:
             translation.ignored
           ...
+          i18n-hygiene/Unused translation:
+            translation.script
+
           i18n-hygiene/Missing interpolation variable(s):
             fr_invalid.translation.interpolation: "dont need no interpolation!"
               Expected: qux

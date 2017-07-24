@@ -1,5 +1,6 @@
 en_valid:
   translation:
+    script: "blah"
     ignored: "ignore"
     dynamic: "foo"
     plural:
