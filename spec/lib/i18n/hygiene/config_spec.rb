@@ -3,6 +3,13 @@ require 'i18n/hygiene/config'
 RSpec.describe I18n::Hygiene::Config do
   let(:config) { I18n::Hygiene::Config.new }
 
+  describe "#exclude_files=" do
+    it "sets exclude_files" do
+      config.exclude_files = ["ignore.this"]
+      expect(config.exclude_files).to eq ["ignore.this"]
+    end
+  end
+
   describe "#primary_locale=" do
     it "sets primary_locale" do
       config.primary_locale = :en

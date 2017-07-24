@@ -3,11 +3,16 @@ require 'parallel'
 module I18n
   module Hygiene
     class Config
+      attr_writer :exclude_files
       attr_writer :directories
       attr_writer :primary_locale
       attr_writer :locales
       attr_writer :keys_to_skip
       attr_writer :concurrency
+
+      def exclude_files
+        @exclude_files ||= []
+      end
 
       def directories
         @directories ||= []
