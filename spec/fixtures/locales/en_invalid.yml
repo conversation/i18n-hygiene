@@ -1,5 +1,6 @@
 en_invalid:
   translation:
+    ignored: "ignore"
     dynamic: "foo &quot;"
     plural:
       one: "<script>bar</script>"

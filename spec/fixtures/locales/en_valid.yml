@@ -1,5 +1,6 @@
 en_valid:
   translation:
+    ignored: "ignore"
     dynamic: "foo"
     plural:
       one: "bar"
