@@ -10,6 +10,13 @@ RSpec.describe I18n::Hygiene::Config do
     end
   end
 
+  describe "#file_extensions=" do
+    it "sets file_extensions" do
+      config.file_extensions = ["rb"]
+      expect(config.file_extensions).to eq ["rb"]
+    end
+  end
+
   describe "#primary_locale=" do
     it "sets primary_locale" do
       config.primary_locale = :en
