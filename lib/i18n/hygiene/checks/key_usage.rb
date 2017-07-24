@@ -17,7 +17,7 @@ module I18n
           )
           
           wrapper = I18n::Hygiene::Wrapper.new(
-            keys_to_skip: config.keys_to_skip,
+            keys_to_exclude: config.keys_to_exclude,
             scopes_to_exclude: config.scopes_to_exclude
           )
 

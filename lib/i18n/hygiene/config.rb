@@ -8,7 +8,7 @@ module I18n
       attr_writer :file_extensions
       attr_writer :primary_locale
       attr_writer :locales
-      attr_writer :keys_to_skip
+      attr_writer :keys_to_exclude
       attr_writer :concurrency
       attr_writer :scopes_to_exclude
 
@@ -36,8 +36,8 @@ module I18n
         [primary_locale] + locales
       end
 
-      def keys_to_skip
-        @keys_to_skip ||= []
+      def keys_to_exclude
+        @keys_to_exclude ||= []
       end
 
       def concurrency

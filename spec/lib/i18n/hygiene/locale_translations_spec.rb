@@ -5,7 +5,7 @@ describe I18n::Hygiene::LocaleTranslations do
   let(:translations) {
     I18n::Hygiene::LocaleTranslations.new(
       translations: all_translations,
-      keys_to_skip: keys_to_skip,
+      keys_to_exclude: keys_to_exclude,
       scopes_to_exclude: scopes_to_exclude
     )
   }
@@ -19,7 +19,7 @@ describe I18n::Hygiene::LocaleTranslations do
       foo: { bar: "baz" },
     }
   end
-  let(:keys_to_skip) {
+  let(:keys_to_exclude) {
     [
       "helpers.select.prompt",
       "helpers.submit.create",

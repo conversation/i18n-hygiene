@@ -2,7 +2,7 @@ require 'i18n'
 require 'i18n/hygiene'
 
 describe I18n::Hygiene::Wrapper do
-  let(:wrapper) { I18n::Hygiene::Wrapper.new(keys_to_skip: []) }
+  let(:wrapper) { I18n::Hygiene::Wrapper.new(keys_to_exclude: []) }
 
   before do
     [:en, :fr, :es].each do |locale|

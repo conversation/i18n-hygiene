@@ -8,16 +8,16 @@ module I18n
     # queryable.
     class Wrapper
 
-      def initialize(keys_to_skip: [], scopes_to_exclude: [], locales: ::I18n.available_locales)
+      def initialize(keys_to_exclude: [], scopes_to_exclude: [], locales: ::I18n.available_locales)
         @locales = locales
-        @keys_to_skip = keys_to_skip
+        @keys_to_exclude = keys_to_exclude
         @scopes_to_exclude = scopes_to_exclude
       end
 
       def keys_to_check(locale)
         I18n::Hygiene::LocaleTranslations.new(
           translations: translations[locale],
-          keys_to_skip: keys_to_skip,
+          keys_to_exclude: keys_to_exclude,
           scopes_to_exclude: scopes_to_exclude
         ).keys_to_check
       end
@@ -49,8 +49,8 @@ module I18n
         ::I18n.backend.send(:init_translations)
       end
 
-      def keys_to_skip
-        @keys_to_skip
+      def keys_to_exclude
+        @keys_to_exclude
       end
 
       def scopes_to_exclude
