@@ -1,5 +1,5 @@
 require 'i18n/hygiene/checks/base'
-require 'i18n/hygiene/keys_with_script_tags'
+require 'i18n/hygiene/keys_with_matched_value'
 require 'i18n/hygiene/result'
 require 'i18n/hygiene/wrapper'
 require 'i18n/hygiene/error_message_builder'
@@ -8,10 +8,12 @@ module I18n
   module Hygiene
     module Checks
       class ScriptTag < Base
+        SCRIPT_TAG_REGEX = /<script.*/
+
         def run
           wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
 
-          keys_with_script_tags = I18n::Hygiene::KeysWithScriptTags.new(i18n_wrapper: wrapper)
+          keys_with_script_tags = I18n::Hygiene::KeysWithMatchedValue.new(SCRIPT_TAG_REGEX, wrapper)
 
           keys_with_script_tags.each do |locale, key|
             message = ErrorMessageBuilder.new
