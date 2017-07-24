@@ -1,5 +1,4 @@
 require 'i18n/hygiene/key_usage_checker'
-require 'i18n/hygiene/keys_with_entities'
 require 'i18n/hygiene/keys_with_matched_value'
 require 'i18n/hygiene/keys_with_return_symbol'
 require 'i18n/hygiene/keys_with_script_tags'
