@@ -68,6 +68,21 @@ describe I18n::Hygiene::KeyUsageChecker do
           checker_instance.used?("my.key")
         end
       end
+
+      context "provided file extensions" do
+        let(:checker_instance) do
+          I18n::Hygiene::KeyUsageChecker.new(
+            directories: ["app"],
+            file_extensions: ["rb", "jsx"]
+          )
+        end
+
+        it "only looks in files that are in the given directories which have the given file extensions" do
+          expect(checker_instance).to receive(:`).with("git grep my.key 'app/*.rb' 'app/*.jsx' | wc -l").and_return("1")
+
+          checker_instance.used?("my.key")
+        end
+      end
     end
   end
 end
