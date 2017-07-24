@@ -13,6 +13,7 @@ module I18n
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
             directories: config.directories,
             exclude_files: config.exclude_files,
+            file_extensions: config.file_extensions
           )
 
           wrapper = I18n::Hygiene::Wrapper.new(keys_to_skip: config.keys_to_skip)
