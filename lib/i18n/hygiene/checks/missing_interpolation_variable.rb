@@ -9,7 +9,7 @@ module I18n
     module Checks
       class MissingInterpolationVariable < Base
         def run
-          wrapper = I18n::Hygiene::Wrapper.new
+          wrapper = I18n::Hygiene::Wrapper.new(scopes_to_exclude: config.scopes_to_exclude)
 
           wrapper.keys_to_check(config.primary_locale).select do |key|
             checker = I18n::Hygiene::VariableChecker.new(key, wrapper, config.primary_locale, config.locales)

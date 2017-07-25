@@ -2,7 +2,13 @@ require 'i18n'
 require 'i18n/hygiene'
 
 describe I18n::Hygiene::LocaleTranslations do
-  let(:translations) { I18n::Hygiene::LocaleTranslations.new(translations: all_translations, keys_to_skip: keys_to_skip) }
+  let(:translations) {
+    I18n::Hygiene::LocaleTranslations.new(
+      translations: all_translations,
+      keys_to_exclude: keys_to_exclude,
+      scopes_to_exclude: scopes_to_exclude
+    )
+  }
   let(:all_translations) do
     {
       activerecord: "abc",
@@ -13,12 +19,17 @@ describe I18n::Hygiene::LocaleTranslations do
       foo: { bar: "baz" },
     }
   end
-  let(:keys_to_skip) {
+  let(:keys_to_exclude) {
     [
       "helpers.select.prompt",
       "helpers.submit.create",
       "helpers.submit.submit",
       "helpers.submit.update"
+    ]
+  }
+  let(:scopes_to_exclude) {
+    [
+      :activerecord, :devise, :views
     ]
   }
 

@@ -11,7 +11,7 @@ module I18n
         SCRIPT_TAG_REGEX = /<script.*/
 
         def run
-          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales)
+          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales, scopes_to_exclude: config.scopes_to_exclude)
 
           keys_with_script_tags = I18n::Hygiene::KeysWithMatchedValue.new(SCRIPT_TAG_REGEX, wrapper)
 
