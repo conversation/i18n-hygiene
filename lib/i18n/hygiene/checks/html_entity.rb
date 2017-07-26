@@ -7,6 +7,8 @@ require 'i18n/hygiene/error_message_builder'
 module I18n
   module Hygiene
     module Checks
+      ##
+      # Looks for unexpected HTML entities (`&amp;`, `&#33;`) in translations.
       class HtmlEntity < Base
         ENTITY_REGEX = /&\w+;/
 

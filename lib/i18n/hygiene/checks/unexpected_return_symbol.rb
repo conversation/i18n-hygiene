@@ -6,6 +6,10 @@ require 'i18n/hygiene/error_message_builder'
 module I18n
   module Hygiene
     module Checks
+      ##
+      # Looks for unexpected return symbols (U+23CE) in translations.
+      #
+      # This check is fairly specific to PhraseApp, where U+23CE has special meaning.
       class UnexpectedReturnSymbol < Base
         RETURN_SYMBOL_REGEX = /\u23ce/
 

@@ -7,6 +7,8 @@ require 'i18n/hygiene/error_message_builder'
 module I18n
   module Hygiene
     module Checks
+      ##
+      # Looks for unexpected script tags in translations.
       class ScriptTag < Base
         SCRIPT_TAG_REGEX = /<script.*/
 

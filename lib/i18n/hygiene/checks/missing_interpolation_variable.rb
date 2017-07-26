@@ -7,6 +7,8 @@ require 'i18n/hygiene/error_message_builder'
 module I18n
   module Hygiene
     module Checks
+      ##
+      # Looks for translations which are missing interpolation variables.
       class MissingInterpolationVariable < Base
         def run
           wrapper = I18n::Hygiene::Wrapper.new(scopes_to_exclude: config.scopes_to_exclude)
