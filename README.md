@@ -16,11 +16,6 @@ Then, create a rake task with the desired configuration. For example, this will 
 namespace :i18n do
   I18n::Hygiene::RakeTask.new do |config|
     config.directories = ["app", "lib"]
-    config.locales = [:es, :fr, :id]
-    config.keys_to_exclude = [
-      "my.dynamically.used.key",
-      "another.dynamically.used.key"
-    ]
   end
 end
 
@@ -49,6 +44,41 @@ Which could be run like:
 ```
 bundle exec rake i18n:hygiene_live
 bundle exec rake i18n:hygiene_wip
+```
+
+## Configuration
+
+| Configuration | Description |
+|---|---|
+| `concurrency` | How many threads to use for key usage check (default is number of cores) |
+| `directories` | Directories to search for key usage |
+| `exclude_files` | Excludes files from key usage check |
+| `file_extensions` | Only look in files with these extensions for key usage |
+| `primary_locale` | Translations from other locales will be checked against this one |
+| `locales` | Translations from these locales will be checked against the primary locale |
+| `keys_to_exclude` | Exclude individual keys  |
+| `scopes_to_exclude` | Exclude groups of keys |
+
+Example using all configuration options:
+
+```ruby
+I18n::Hygiene::RakeTask.new do |config|
+  config.concurrency = 16
+  config.directories = ["app", "lib"]
+  config.exclude_files = ["README.md"]
+  config.file_extensions = ["rb", "jsx"]
+  config.primary_locale = :en
+  config.locales = [:ja, :kr]
+  config.keys_to_exclude = [
+    "my.dynamically.used.key",
+    "another.dynamically.used.key"
+  ]
+  config.scopes_to_exclude = [
+    "activerecord",
+    "countries"
+  ]
+end
+
 ```
 
 #### Without Rails
