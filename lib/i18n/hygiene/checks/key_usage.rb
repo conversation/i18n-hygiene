@@ -8,6 +8,8 @@ require 'i18n/hygiene/error_message_builder'
 module I18n
   module Hygiene
     module Checks
+      ##
+      # Ensures that existing translations are actually used.
       class KeyUsage < Base
         def run
           key_usage_checker = I18n::Hygiene::KeyUsageChecker.new(
