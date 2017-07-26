@@ -4,7 +4,7 @@ Provides a configurable rake task to help maintain your translations.
 
 Over the lifetime of a project there tends to be a lot of churn in the translation files. Contexts and meanings will change, features will be added and removed. You'll find that soon enough, translations fall out of use, mistakes by developers or translators will creep in. The longer this goes on, the harder it is to keep them neat and tidy.
 
-This tool is intended to be used as part of your continuous integration pipeline to prevent issues with translations from ever making it to production.
+This tool is intended to be used as part of your continuous integration pipeline to keep your translations healthy and prevent issues from ever making it to production.
 
 ## Usage
 
