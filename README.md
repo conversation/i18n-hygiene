@@ -87,7 +87,7 @@ end
 
 #### Without Rails
 
-Using this gem without is possible, but you'll need to load the translations manually first.
+Using this gem without Rails is possible, but you'll need to load the translations manually first.
 
 ```ruby
 namespace :i18n do
