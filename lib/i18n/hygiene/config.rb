@@ -25,7 +25,7 @@ module I18n
       end
 
       def primary_locale
-        @primary_locale ||= :en
+        @primary_locale ||= ::I18n.default_locale
       end
 
       def locales
