@@ -57,11 +57,11 @@ bundle exec rake i18n:hygiene_wip
 | `concurrency` | Number of CPU cores | How many threads to use for key usage check |
 | `directories` | All | Directories to search for key usage |
 | `exclude_files` | None | Excludes files from key usage check |
+| `exclude_keys` | None | Exclude individual keys  |
+| `exclude_scopes` | None | Exclude groups of keys |
 | `file_extensions` | `rb, erb, coffee, js, jsx` | Only look in files with these extensions for key usage |
 | `primary_locale` | `I18n.default_locale` | Translations from other locales are checked against this |
 | `locales` | `I18n.available_locales` | Translations from these are checked against primary |
-| `keys_to_exclude` | None | Exclude individual keys  |
-| `scopes_to_exclude` | None | Exclude groups of keys |
 
 Example using all configuration options:
 
@@ -73,11 +73,11 @@ I18n::Hygiene::RakeTask.new do |config|
   config.file_extensions = ["rb", "jsx"]
   config.primary_locale = :en
   config.locales = [:ja, :kr]
-  config.keys_to_exclude = [
+  config.exclude_keys = [
     "my.dynamically.used.key",
     "another.dynamically.used.key"
   ]
-  config.scopes_to_exclude = [
+  config.exclude_scopes = [
     "activerecord",
     "countries"
   ]
