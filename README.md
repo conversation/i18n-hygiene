@@ -17,7 +17,7 @@ namespace :i18n do
   I18n::Hygiene::RakeTask.new do |config|
     config.directories = ["app", "lib"]
     config.locales = [:es, :fr, :id]
-    config.whitelist = [
+    config.keys_to_exclude = [
       "my.dynamically.used.key",
       "another.dynamically.used.key"
     ]
@@ -26,7 +26,12 @@ end
 
 ```
 
-You could also create separate rake tasks with different configurations, this may be useful if you are in the middle of rolling out a new locale:
+You can then run the rake task with:
+```
+bundle exec rake i18n:hygiene
+```
+
+You could also create separate rake tasks with different names and configurations, this may be useful if you are in the middle of rolling out a new locale:
 ```ruby
 namespace :i18n do
   I18n::Hygiene::RakeTask.new(:hygiene_live) do |config|
@@ -37,6 +42,13 @@ namespace :i18n do
     config.locales = [:es]
   end
 end
+```
+
+Which could be run like:
+
+```
+bundle exec rake i18n:hygiene_live
+bundle exec rake i18n:hygiene_wip
 ```
 
 #### Without Rails
