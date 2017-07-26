@@ -14,7 +14,6 @@ describe I18n::Hygiene::LocaleTranslations do
       activerecord: "abc",
       devise: "abc",
       views: "abc",
-      common: { greeting: "Hello!" },
       helpers: { select: { prompt: "?" } },
       foo: { bar: "baz" },
     }
