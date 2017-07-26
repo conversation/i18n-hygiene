@@ -5,8 +5,8 @@ describe I18n::Hygiene::LocaleTranslations do
   let(:translations) {
     I18n::Hygiene::LocaleTranslations.new(
       translations: all_translations,
-      keys_to_exclude: keys_to_exclude,
-      scopes_to_exclude: scopes_to_exclude
+      exclude_keys: exclude_keys,
+      exclude_scopes: exclude_scopes
     )
   }
   let(:all_translations) do
@@ -19,7 +19,7 @@ describe I18n::Hygiene::LocaleTranslations do
       foo: { bar: "baz" },
     }
   end
-  let(:keys_to_exclude) {
+  let(:exclude_keys) {
     [
       "helpers.select.prompt",
       "helpers.submit.create",
@@ -27,7 +27,7 @@ describe I18n::Hygiene::LocaleTranslations do
       "helpers.submit.update"
     ]
   }
-  let(:scopes_to_exclude) {
+  let(:exclude_scopes) {
     [
       :activerecord, :devise, :views
     ]

@@ -6,7 +6,7 @@ module I18n
 
       def initialize(regex, i18n_wrapper = nil, reject_keys: nil)
         @regex = regex
-        @i18n = i18n_wrapper || I18n::Hygiene::Wrapper.new(keys_to_exclude: [])
+        @i18n = i18n_wrapper || I18n::Hygiene::Wrapper.new(exclude_keys: [])
         @reject_keys = reject_keys
       end
 

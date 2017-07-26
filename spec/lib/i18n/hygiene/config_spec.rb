@@ -38,10 +38,10 @@ RSpec.describe I18n::Hygiene::Config do
     end
   end
 
-  describe "#scopes_to_exclude=" do
+  describe "#exclude_scopes=" do
     it "sets scopes to exclude" do
-      config.scopes_to_exclude = [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
-      expect(config.scopes_to_exclude).to eq [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
+      config.exclude_scopes = [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
+      expect(config.exclude_scopes).to eq [ :activerecord, :date, :datetime, :errors, :number, :support, :time ]
     end
   end
 end
