@@ -12,7 +12,7 @@ module I18n
       end
 
       def used?(key)
-        i18n_config_key?(key) || fully_qualified_key_used?(key)
+        fully_qualified_key_used?(key)
       end
 
       private
@@ -45,10 +45,6 @@ module I18n
         @exclude_files.map { |file|
           "':(exclude)*#{file}'"
         }.join(" ")
-      end
-
-      def i18n_config_key?(key)
-        key.start_with?("i18n.")
       end
 
       def pluralized_key_used?(key)

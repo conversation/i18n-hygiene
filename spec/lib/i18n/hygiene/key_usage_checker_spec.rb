@@ -9,12 +9,6 @@ describe I18n::Hygiene::KeyUsageChecker do
   end
 
   describe '#used?' do
-    context "key is prefixed with i18n" do
-      it "returns true" do
-        expect(checker_instance.used?("i18n.my.key")).to eql true
-      end
-    end
-
     context "shelling out" do
       context "not excluding files" do
         before do
