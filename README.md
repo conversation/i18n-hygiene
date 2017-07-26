@@ -10,7 +10,7 @@ Include the gem in your gemfile and bundle:
 
 ## Integrating with rake
 
-Then, create a rake task with the desired configuration. For example, this will create a rake task called `i18n:hygiene`:
+Create a rake task with the desired configuration. For example, this will create a rake task called `i18n:hygiene`:
 
 ```ruby
 namespace :i18n do
