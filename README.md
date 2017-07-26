@@ -54,8 +54,8 @@ bundle exec rake i18n:hygiene_wip
 | `directories` | All | Directories to search for key usage |
 | `exclude_files` | None | Excludes files from key usage check |
 | `file_extensions` | `rb, erb, coffee, js, jsx` | Only look in files with these extensions for key usage |
-| `primary_locale` | `I18n.default_locale` | Translations from other locales will be checked against this one |
-| `locales` | `I18n.available_locales` | Translations from these locales will be checked against the primary locale |
+| `primary_locale` | `I18n.default_locale` | Translations from other locales are checked against this |
+| `locales` | `I18n.available_locales` | Translations from these are checked against primary |
 | `keys_to_exclude` | None | Exclude individual keys  |
 | `scopes_to_exclude` | None | Exclude groups of keys |
 
