@@ -17,10 +17,10 @@ module I18n
             exclude_files: config.exclude_files,
             file_extensions: config.file_extensions
           )
-          
+
           wrapper = I18n::Hygiene::Wrapper.new(
-            keys_to_exclude: config.keys_to_exclude,
-            scopes_to_exclude: config.scopes_to_exclude
+            exclude_keys: config.exclude_keys,
+            exclude_scopes: config.exclude_scopes
           )
 
           Parallel.each(wrapper.keys_to_check(config.primary_locale), in_threads: config.concurrency) do |key|

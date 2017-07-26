@@ -14,7 +14,7 @@ module I18n
         RETURN_SYMBOL_REGEX = /\u23ce/
 
         def run
-          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales, scopes_to_exclude: config.scopes_to_exclude)
+          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales, exclude_scopes: config.exclude_scopes)
           keys_with_return_symbols = I18n::Hygiene::KeysWithMatchedValue.new(RETURN_SYMBOL_REGEX, wrapper)
 
           keys_with_return_symbols.each do |locale, key|

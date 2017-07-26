@@ -13,7 +13,7 @@ module I18n
         ENTITY_REGEX = /&\w+;/
 
         def run
-          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales, scopes_to_exclude: config.scopes_to_exclude)
+          wrapper = I18n::Hygiene::Wrapper.new(locales: all_locales, exclude_scopes: config.exclude_scopes)
 
           keys_with_entities = I18n::Hygiene::KeysWithMatchedValue.new(ENTITY_REGEX, wrapper, reject_keys: reject_keys)
 
