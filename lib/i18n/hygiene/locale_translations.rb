@@ -4,9 +4,6 @@ module I18n
     # aren't in our control. Can return the i18n keys that **are** in our control,
     # and therefore are interesting for a variety of reasons.
     class LocaleTranslations
-      # This is a default example key in the locale files that is not actually used.
-      EXAMPLE_KEY = "common.greeting"
-
       # These are i18n keys provided by Rails. We cannot exclude them at the :helpers
       # scope level because we do have some TC i18n keys scoped within :helpers.
 
@@ -18,7 +15,7 @@ module I18n
 
       def keys_to_check
         fully_qualified_keys(translations_to_check).reject { |key|
-          exclude_keys.include?(key) || EXAMPLE_KEY == key
+          exclude_keys.include?(key)
         }.sort
       end
 
