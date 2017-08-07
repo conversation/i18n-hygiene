@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'i18n-hygiene'
-  s.version = '1.0.0'
+  s.version = '1.0.1'
   s.license = 'MIT'
   s.summary = "A linter for translation data in ruby applications"
   s.description = "Provides a configurable rake task that checks locale data for likely issues. Intended to be used in build pipelines to detect problems before they reach production"
