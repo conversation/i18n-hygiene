@@ -37,7 +37,7 @@ module I18n
       end
 
       def rails_variables(string)
-        string.scan(/%{\S+}/).map { |var_string| var_string.gsub(/[%{}]/, '').to_sym }
+        string.scan(/%{\S+?}/).map { |var_string| var_string.gsub(/[%{}]/, '').to_sym }.uniq
       end
 
       def js_variables(string)
