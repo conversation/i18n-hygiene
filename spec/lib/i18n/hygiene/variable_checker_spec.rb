@@ -5,13 +5,13 @@ describe I18n::Hygiene::VariableChecker do
   let(:i18n_wrapper) { instance_double("TC::I18nWrapper") }
   let(:checker) { I18n::Hygiene::VariableChecker.new("test_key", i18n_wrapper, :en, [:fr]) }
   let(:checker_markdown) { I18n::Hygiene::VariableChecker.new("test_key_markdown", i18n_wrapper, :en, [:fr]) }
-  let(:base_value) { "A sentence with a variable %{variable_key}"  }
-  let(:base_js_value) { "A sentence with a variable __variable_key__"  }
-  let(:matching_value) { "Translation with correct variable %{variable_key}"  }
-  let(:matching_js_value) { "Translation with correct variable __variable_key__"  }
+  let(:base_value) { "A sentence with a variable %{variable_key}" }
+  let(:base_js_value) { "A sentence with a variable __variable_key__" }
+  let(:matching_value) { "Translation with correct variable %{variable_key}" }
+  let(:matching_js_value) { "Translation with correct variable __variable_key__" }
   let(:mismatch) { "Translation with wrong variable %{bad_key}" }
   let(:mismatch_js) { "Translation with wrong variable __bad_key__" }
-  let(:mismatch_info) { "test_key for locale fr is missing interpolation variable(s): variable_key"  }
+  let(:mismatch_info) { "test_key for locale fr is missing interpolation variable(s): variable_key" }
   let(:markdown_italic_en) { "Within Markdown __italics__ ignore" }
   let(:markdown_italic_fr) { "Within Markdown __italiques__ ignore" }
 
