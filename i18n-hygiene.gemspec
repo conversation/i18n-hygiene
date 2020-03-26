@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.md"]
   s.rdoc_options << "--title" << "i18n-hygiene documentation" << "--main" << "README.md"
 
-  s.add_dependency 'i18n', ['~> 0.6', '>= 0.6.9']
+  s.add_dependency 'i18n', '>= 0.6.9', '< 2'
   s.add_dependency 'parallel', '~> 1.3'
   s.add_dependency 'rainbow', '>= 1.99.1', '< 3.0'
   s.add_dependency 'rake', '>= 0.8.7'
