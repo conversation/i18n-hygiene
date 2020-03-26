@@ -8,7 +8,6 @@ Gem::Specification.new do |s|
   s.email = "dev@theconversation.edu.au"
   s.files = `git ls-files -- lib/*`.split("\n")
   s.homepage = 'https://github.com/conversation/i18n-hygiene'
-  s.has_rdoc = true
   s.extra_rdoc_files = ["README.md"]
   s.rdoc_options << "--title" << "i18n-hygiene documentation" << "--main" << "README.md"
 
