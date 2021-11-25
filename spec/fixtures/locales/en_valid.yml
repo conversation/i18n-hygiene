@@ -8,3 +8,4 @@ en_valid:
       other: "bars"
     full_key: "baz"
     interpolation: "%{qux}"
+    ignored_key: "rofl %{quz}"
