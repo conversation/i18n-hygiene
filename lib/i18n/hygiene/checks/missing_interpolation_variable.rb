@@ -11,7 +11,10 @@ module I18n
       # Looks for translations which are missing interpolation variables.
       class MissingInterpolationVariable < Base
         def run
-          wrapper = I18n::Hygiene::Wrapper.new(exclude_scopes: config.exclude_scopes)
+          wrapper = I18n::Hygiene::Wrapper.new(
+            exclude_keys: config.exclude_keys,
+            exclude_scopes: config.exclude_scopes
+          )
 
           wrapper.keys_to_check(config.primary_locale).select do |key|
             checker = I18n::Hygiene::VariableChecker.new(key, wrapper, config.primary_locale, config.locales)
