@@ -9,7 +9,7 @@ I18n::Hygiene::RakeTask.new(:default) do |config|
   config.directories = ["spec/fixtures/project/app", "spec/fixtures/project/lib"]
   config.primary_locale = :en_valid
   config.locales = [:fr_valid]
-  config.exclude_keys = "translation.dynamic"
+  config.exclude_keys = ["translation.dynamic", "translation.ignored_key"]
   config.file_extensions = ["rb", "jsx"]
   config.concurrency = 1
 end
