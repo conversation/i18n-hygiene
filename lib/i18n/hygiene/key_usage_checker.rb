@@ -7,8 +7,6 @@ module I18n
         @directories = directories
         @exclude_files = exclude_files
         @file_extensions = file_extensions
-
-        raise "Must have git installed!" unless system("which git > /dev/null")
       end
 
       def used?(key)
@@ -21,30 +19,20 @@ module I18n
         if pluralized_key_used?(key)
           fully_qualified_key_used?(without_last_part(key))
         else
-          %x<git grep #{key} #{git_grep_options} | wc -l>.strip.to_i > 0
+          directories = @directories.join(" ")
+          include_argument = @file_extensions.map { |extension| "--include=\"*.#{extension}\"" }.join(" ")
+          exclude_argument = @exclude_files.map { |file| "--exclude=\"#{file}\"" }.join(" ")
+
+          grep_command = [
+            "grep --recursive",
+            key,
+            include_argument,
+            exclude_argument,
+            directories
+          ].reject(&:empty?).join(" ")
+
+          %x<#{grep_command} | wc -l>.strip.to_i > 0
         end
-      end
-
-      def git_grep_options
-        [git_grep_include, git_grep_exclude].reject(&:empty?).join(" ")
-      end
-
-      def git_grep_include
-        @directories.map { |dir|
-          if @file_extensions.empty?
-            dir
-          else
-            @file_extensions.map { |ext|
-              "'#{dir}/*.#{ext}'"
-            }
-          end
-        }.flatten.join(" ")
-      end
-
-      def git_grep_exclude
-        @exclude_files.map { |file|
-          "':(exclude)*#{file}'"
-        }.join(" ")
       end
 
       def pluralized_key_used?(key)

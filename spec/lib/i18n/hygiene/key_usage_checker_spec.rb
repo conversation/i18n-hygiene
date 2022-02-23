@@ -12,7 +12,7 @@ describe I18n::Hygiene::KeyUsageChecker do
     context "shelling out" do
       context "not excluding files" do
         before do
-          expect(checker_instance).to receive(:`).with("git grep my.key you only yolo once | wc -l").and_return(wc_result)
+          expect(checker_instance).to receive(:`).with("grep --recursive my.key you only yolo once | wc -l").and_return(wc_result)
         end
 
         context "wc is zero" do
@@ -57,7 +57,7 @@ describe I18n::Hygiene::KeyUsageChecker do
         end
 
         it "excludes the expected file(s)" do
-          expect(checker_instance).to receive(:`).with("git grep my.key app ':(exclude)*ignored.file' | wc -l").and_return("1")
+          expect(checker_instance).to receive(:`).with("grep --recursive my.key --exclude=\"ignored.file\" app | wc -l").and_return("1")
 
           checker_instance.used?("my.key")
         end
@@ -72,7 +72,7 @@ describe I18n::Hygiene::KeyUsageChecker do
         end
 
         it "only looks in files that are in the given directories which have the given file extensions" do
-          expect(checker_instance).to receive(:`).with("git grep my.key 'app/*.rb' 'app/*.jsx' | wc -l").and_return("1")
+          expect(checker_instance).to receive(:`).with("grep --recursive my.key --include=\"*.rb\" --include=\"*.jsx\" app | wc -l").and_return("1")
 
           checker_instance.used?("my.key")
         end
