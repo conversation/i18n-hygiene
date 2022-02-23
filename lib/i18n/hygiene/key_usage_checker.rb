@@ -7,6 +7,8 @@ module I18n
         @directories = directories
         @exclude_files = exclude_files
         @file_extensions = file_extensions
+
+        raise "Must have grep installed!" unless system("which grep > /dev/null")
       end
 
       def used?(key)
