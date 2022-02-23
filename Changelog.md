@@ -1,6 +1,11 @@
 ### Development
 [Full Changelog](https://github.com/conversation/i18n-hygiene/compare/v1.0.0...master)
 
+### [1.3.0] - 2022-02-23
+
+* Drop `git` dependency. Use system's `grep` instead `git grep`
+* Fixes a bug where the `exclude_files` wouldn't work
+
 ### [1.2.0] - 2021-11-26
 
 * Ignore interpolation check for excluded keys

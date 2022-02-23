@@ -27,10 +27,7 @@ RSpec.describe "i18n-hygiene" do
 
           i18n-hygiene/Unused translation:
             translation.dynamic
-
-          i18n-hygiene/Unused translation:
-            translation.ignored
-          ...
+          ....
           i18n-hygiene/Unused translation:
             translation.script
 
